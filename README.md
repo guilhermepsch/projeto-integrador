@@ -25,7 +25,7 @@ Para executar o aplicativo, basta clonar o repositório e executar o comando `do
 ```bash
 git clone https://github.com/guilhermepsch/projeto-integrador.git
 cd projeto-integrador
-docker-compose up
+docker compose up
 ```
 
 ## Parando o aplicativo
@@ -33,7 +33,7 @@ docker-compose up
 Para parar o aplicativo, basta executar o comando `docker compose down` no diretório raiz do projeto. Isso irá parar e remover os contêineres criados.
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 Após executar este comando, o aplicativo deverá estar disponível em `http://localhost:5000` em seu navegador.
