@@ -1,7 +1,16 @@
-version: '3'
+name: pi
+
 services:
   backend:
-    build: server/.
+    build: 
+      context: server
+      target: dev
+    volumes:
+      - ./server:/usr/src/app
+      - backend_node_modules:/usr/src/app/node_modules
     ports:
       - "3000:3000"
-    container_name: pi-backend
+    entrypoint: npm run start
+
+volumes:
+  backend_node_modules:
