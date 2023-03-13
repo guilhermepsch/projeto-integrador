@@ -5,6 +5,7 @@
   },
   "scripts": {
     "start": "npx nodemon --exec ts-node src/server.ts",
+    "build": "npx swc src -d dist --source-maps",
     "test": "jest"
   },
   "devDependencies": {
