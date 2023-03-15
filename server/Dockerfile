@@ -1,10 +1,5 @@
 # imagem base dependencias
-FROM ubuntu:jammy as base
-RUN apt-get update && apt-get install -y curl
-RUN curl -fsSL https://deb.nodesource.com/setup_lts.x
-RUN apt-get update && apt-get upgrade -y && \
-    apt-get install -y nodejs \
-    npm
+FROM node:18.15 as base
 
 # imagem de desenvolvimento
 FROM base as dev
