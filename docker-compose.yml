@@ -9,7 +9,9 @@ services:
       - ./server:/usr/src/app
       - backend_node_modules:/usr/src/app/node_modules
     ports:
-      - "3000:3000"
+      - "${SERVERPORT}:${SERVERPORT}"
+    environment:
+      - SERVERPORT=${SERVERPORT}
     entrypoint: npm run start
 
 volumes:
