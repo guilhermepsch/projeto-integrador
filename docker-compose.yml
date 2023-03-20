@@ -14,5 +14,19 @@ services:
       - SERVERPORT=${SERVERPORT}
     entrypoint: npm run start
 
+  frontend:
+    build: 
+      context: web
+      target: dev
+    volumes:
+      - ./web:/usr/src/app
+      - frontend_node_modules:/usr/src/app/node_modules
+    ports:
+      - "${WEBPORT}:${WEBPORT}"
+    environment:
+      - WEBPORT=${WEBPORT}
+    entrypoint: npm run dev
+
 volumes:
   backend_node_modules:
+  frontend_node_modules:
