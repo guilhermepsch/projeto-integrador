@@ -20,6 +20,12 @@ O Docker Compose é um plugin para o Docker que permite definir e executar aplic
 
 ## Executando o aplicativo
 
+### Variáveis de ambiente
+
+O aplicativo usa variáveis de ambiente para configurar algumas de suas funcionalidades. Para configurar as variáveis de ambiente, crie um arquivo `.env` no diretório raiz do projeto, utilizando o arquivo `env.sample` como base.
+
+### Rodando o aplicativo
+
 Para executar o aplicativo, basta clonar o repositório e executar o comando `docker compose up` no diretório raiz do projeto. Isso irá construir e iniciar os contêineres necessários para executar o aplicativo.
 
 ```bash
@@ -27,6 +33,8 @@ git clone https://github.com/guilhermepsch/projeto-integrador.git
 cd projeto-integrador
 docker compose up
 ```
+
+Após executar este comando, o aplicativo deverá estar disponível no localhost na porta que foi configurada no arquivo `.env`, tanto para web, como para backend e o banco de dados, é possível verificar o link exato na saída do comando.
 
 ## Parando o aplicativo
 
@@ -36,7 +44,7 @@ Para parar o aplicativo, basta executar o comando `docker compose down` no diret
 docker compose down
 ```
 
-Após executar este comando, o aplicativo deverá estar disponível em `http://localhost:5000` em seu navegador.
+Isso irá parar e remover os contêineres criados.
 
 ## Contribuindo
 
