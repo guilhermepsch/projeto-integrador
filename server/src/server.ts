@@ -8,4 +8,6 @@ app.get('/', (req: Request, res: Response) => {
     res.send('sample get request');
 });
 
-app.listen(port);
+app.listen(port, () => {
+    console.log("[SERVER] Rodando em http://localhost:" + port);
+});
