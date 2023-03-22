@@ -5,13 +5,7 @@ const app: Express = express();
 const port = process.env.SERVERPORT
 
 app.get('/', (req: Request, res: Response) => {
-    res.send('TA FUNCIONANDO CARALHO');
+    res.send('sample get request');
 });
 
-app.get('/teste',(req: Request, res: Response) => {
-    res.send('rota teste');
-});
-
-app.listen(port, () => {
-    console.log(`[Server]: Rodando em http://localhost:${port}`);
-});
+app.listen(port);
