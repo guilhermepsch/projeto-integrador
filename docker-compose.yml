@@ -18,6 +18,7 @@ services:
       - "${SERVERPORT}:${SERVERPORT}"
     environment:
       - SERVERPORT=${SERVERPORT}
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
     entrypoint: npm run start
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${SERVERPORT}"]
