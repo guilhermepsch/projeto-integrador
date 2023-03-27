@@ -1,12 +1,10 @@
-import express, { Express, Request, Response } from 'express';
-import { env } from 'process';
+import express, { Express } from 'express';
+import routes from './routes';
 
 const app: Express = express();
-const port = process.env.SERVERPORT
+const port = String(process.env.SERVERPORT)
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('sample get request');
-});
+app.use(routes);
 
 app.listen(port, () => {
     console.log("[SERVER] Rodando em http://localhost:" + port);
