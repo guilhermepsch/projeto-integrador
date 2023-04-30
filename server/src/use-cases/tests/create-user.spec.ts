@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
-import { User } from "../entities/user";
-import { CreateUser } from "./create-user";
-import { InMemoryUserRepository } from "../repositories/in-memory/in-memory-user-repository";
+import { User } from "../../entities/user";
+import { CreateUser } from "../create-user";
+import { InMemoryUserRepository } from "../../repositories/in-memory/in-memory-user-repository";
 
 describe('create an user', () => {
   it('should be able to create an user', () => {

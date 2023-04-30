@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { User } from "./user";
+import { User } from "../user";
 import { Hash } from "crypto";
 
 test('create an user', () => {
