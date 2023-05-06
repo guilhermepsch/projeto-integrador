@@ -1,54 +1,54 @@
 export class User {
+  private id: number;
   private name: string;
   private email: string;
   private secret: string;
-  private isSuperUser: boolean;
   private createdAt: Date;
   private updatedAt: Date;
 
-  constructor(name: string, email: string, secret: string) {
-    this.name = name;
-    this.email = email;
-    this.secret = secret;
-    this.isSuperUser = false;
-    const startingDate = new Date();
-    this.createdAt = startingDate;
-    this.updatedAt = startingDate;
+constructor (id: number, name: string, email: string, secret: string, createdAt: Date, updatedAt: Date) {
+  this.id = id;
+  this.name = name;
+  this.email = email;
+  this.secret = secret;
+  this.createdAt = createdAt;
+  this.updatedAt = updatedAt;
+}
+
+  public getId(): number {
+    return this.id;
   }
 
-  public get getName(): string {
+  public getName(): string {
     return this.name;
   }
 
-  public set setName(name: string) {
+  public setName(name: string) {
     this.name = name;
   }
 
-  public get getEmail(): string {
+  public getEmail(): string {
     return this.email;
   }
 
-  public set setEmail(email: string) {
+  public setEmail(email: string) {
     this.email = email;
   }
 
-  public get getSecret(): string {
+  public getSecret(): string {
     return this.secret;
   }
 
-  public get getIsSuperUser(): boolean {
-    return this.isSuperUser;
+  public setSecret(secret: string) {
+    this.secret = secret;
   }
 
-  public get getCreatedAt(): Date {
+  public getCreatedAt(): Date {
     return this.createdAt;
   }
 
-  public get getUpdatedAt(): Date {
+  public getUpdatedAt(): Date {
     return this.updatedAt;
   }
 
-  public setUpdatedAt() {
-    this.updatedAt = new Date();
-  }
 }
