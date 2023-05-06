@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { CreateUser } from "./create-user";
 import { PrismaUserRepository } from "../../repositories/prisma/prisma-user-repository";
 
-export class UserController {
+export class CreateUserController {
 
   private createUser: CreateUser;
 
