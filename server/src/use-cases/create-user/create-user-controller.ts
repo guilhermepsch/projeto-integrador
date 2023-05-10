@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { CreateUser } from "./create-user";
-import { PrismaUserRepository } from "../../repositories/prisma/prisma-user-repository";
+import { InMemoryUserRepository } from "../../repositories/in-memory/in-memory-user-repository";
 
 export class CreateUserController {
 
@@ -9,7 +9,7 @@ export class CreateUserController {
 
   constructor() {
     this.createUser = new CreateUser(
-      new PrismaUserRepository(new PrismaClient())
+      new InMemoryUserRepository()
     );
   }
 
