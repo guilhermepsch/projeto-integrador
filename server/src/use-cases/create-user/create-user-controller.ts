@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import { CreateUser } from "./create-user";
 import { InMemoryUserRepository } from "../../repositories/in-memory/in-memory-user-repository";
 
