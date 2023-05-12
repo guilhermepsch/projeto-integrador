@@ -1,24 +1,24 @@
 import { Request, Response } from 'express';
-import { CreateUser } from './create-user';
+import { DeleteUser } from './delete-user';
 import { PrismaUserRepository } from '../../repositories/prisma/prisma-user-repository';
 import { PrismaClient } from '@prisma/client';
 
-export class CreateUserController {
-	private createUser: CreateUser;
+export class DeleteUserController {
+	private deleteUser: DeleteUser;
 
 	constructor() {
-		this.createUser = new CreateUser(
+		this.deleteUser = new DeleteUser(
 			new PrismaUserRepository(new PrismaClient()),
 		);
 	}
 
-	async create(req: Request, res: Response): Promise<Response> {
-		const { email, secret } = req.body;
+	async delete(req: Request, res: Response): Promise<Response> {
 		try {
-			await this.createUser.execute({ email, secret });
+			const { id } = req.params;
+			await this.deleteUser.execute(Number(id));
+			return res.status(200).send();
 		} catch (error: any) {
 			return res.status(400).json({ message: error.message });
 		}
-		return res.status(201).send();
 	}
 }
