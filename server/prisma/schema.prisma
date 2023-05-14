@@ -70,12 +70,13 @@ model ClientAddress {
 }
 
 model Catalogue {
-  cata_id    Int      @id @default(autoincrement())
-  cata_type  Int
-  created_at DateTime @default(now())
-  updated_at DateTime @default(now()) @updatedAt
 
-  Product Product[]
+  cata_id    Int       @id @default(autoincrement())
+  cata_title String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  Product    Product[]
+
 }
 
 model Product {

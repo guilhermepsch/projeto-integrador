@@ -70,7 +70,8 @@ async function main() {
   await prisma.catalogue.createMany({
     data: [
       {
-        cata_type: 1,
+        cata_id: 1,
+        cata_title: 'Catálogo 1',
       },
     ],
   });
