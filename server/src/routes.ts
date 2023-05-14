@@ -3,6 +3,10 @@ import { CreateUserController } from './use-cases/create-user/create-user-contro
 import { ReadUserController } from './use-cases/read-user/read-user-controller';
 import { UpdateUserController } from './use-cases/update-user/update-user-controller';
 import { DeleteUserController } from './use-cases/delete-user/delete-user-controller';
+import { CreateOrderController } from './use-cases/create-order/create-order-controller';
+import { ReadOrderController } from './use-cases/read-order/read-order-controller';
+import { DeleteOrderController } from './use-cases/delete-order/delete-order-controller';
+import { UpdateOrderController } from './use-cases/update-order/update-order-controller';
 import { CreateCartController } from './use-cases/create-cart/create-cart-controller';
 import { ReadCartController } from './use-cases/read-cart/read-cart-controller';
 import { UpdateCartController } from './use-cases/update-cart/update-cart-controller';
@@ -31,10 +35,20 @@ routes.delete('/cart/:id', (req, res) =>
 	new DeleteCartController().delete(req, res),
 );
 
+// order routes
+routes.post('/order', (req, res) => new CreateOrderController().create(req, res));
+routes.get('/order', (req, res) => new ReadOrderController().read(req, res));
+routes.put('/order/:id', (req, res) =>
+ 	new UpdateOrderController().update(req,res));
+routes.delete('/order/:id', (req, res) =>
+	new DeleteOrderController().delete(req, res),
+);
+
 // catalogue Routes
 routes.post('/catalogue', (req, res) => new CreateCatalogueController().create(req, res));
 routes.get('/catalogue', (req, res) => new ReadCatalogueController().read(req, res));
 routes.put('/catalogue/:id', (req, res) =>new UpdataCatalogueController().update(req, res),);
 routes.delete('/catalogue/:id', (req, res) =>new DeleteCatalogueController().delete(req, res),);
+
 export default routes;
 

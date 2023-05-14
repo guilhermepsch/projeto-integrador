@@ -115,7 +115,7 @@ model Item {
 
 model Order {
   orde_id     Int      @id @default(autoincrement())
-  orde_nf     String
+  orde_nf     String   @unique
   orde_status Int
   cart_id     Int
   created_at  DateTime @default(now())
