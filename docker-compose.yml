@@ -10,7 +10,7 @@ services:
         condition: service_healthy
     links:
       - database
-    container_name: backend
+    container_name: pi-backend
     volumes:
       - ./server:/usr/src/app
       - backend_node_modules:/usr/src/app/node_modules
@@ -18,12 +18,13 @@ services:
       - "${SERVERPORT}:${SERVERPORT}"
     environment:
       - SERVERPORT=${SERVERPORT}
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB}
     entrypoint: npm run start
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:${SERVERPORT}"]
       interval: 10s
       timeout: 5s
-      retries: 5
+      retries: 10
 
   frontend:
     build: 
@@ -34,7 +35,7 @@ services:
         condition: service_healthy
     links:
       - backend
-    container_name: frontend
+    container_name: pi-frontend
     volumes:
       - ./web:/usr/src/app
       - frontend_node_modules:/usr/src/app/node_modules
@@ -46,7 +47,7 @@ services:
 
   database:
     image: postgres:12.2
-    container_name: database
+    container_name: pi-database
     ports:
       - "${DBPORT}:5432"
     environment:

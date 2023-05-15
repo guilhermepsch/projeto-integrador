@@ -36,6 +36,18 @@ docker compose up
 
 Após executar este comando, o aplicativo deverá estar disponível no localhost na porta que foi configurada no arquivo `.env`, tanto para web, como para backend e o banco de dados, é possível verificar o link exato na saída do comando.
 
+### Populando o banco de dados
+
+Assim que o serviço estiver rodando pela primeira vez, será necessário que você rode as migrations e o seed do banco, isso sera possível através de você entrar no bash do container e rodar dois comandos do prisma.
+
+```bash
+docker exec -it pi-backend /bin/bash
+npx prisma migrate dev
+npx prisma db seed 
+```
+
+Com isto, o banco estará atualizado e com alguns registros prontos para serem inseridos.
+
 ## Parando o aplicativo
 
 Para parar o aplicativo, basta executar o comando `docker compose down` no diretório raiz do projeto. Isso irá parar e remover os contêineres criados.
