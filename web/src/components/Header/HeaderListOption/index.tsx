@@ -1,5 +1,5 @@
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
-import './style.css';
+import './styles.css';
 
 interface HeaderOptionProps {
 	to: string;
@@ -7,12 +7,15 @@ interface HeaderOptionProps {
 	rest?: any;
 }
 
-export function HeaderOption({ to, children, ...rest }: HeaderOptionProps) {
+export function HeaderListOption({ to, children, ...rest }: HeaderOptionProps) {
 	const resolvedPath = useResolvedPath(to);
 	const isActive = useMatch({ path: resolvedPath.pathname, end: true });
 	return (
-		<li className={isActive ? 'active' : ''}>
-			<Link className="header-option-button" to={to} {...rest}>
+		<li>
+			<Link
+				className={'header-list-option' + (isActive ? ' isActive' : '')}
+				to={to}
+				{...rest}>
 				{children}
 			</Link>
 		</li>

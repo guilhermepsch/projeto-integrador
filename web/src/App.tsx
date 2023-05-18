@@ -1,26 +1,24 @@
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
-import ModaPraia from './pages/ModaPraia';
-import Colecoes from './pages/Colecoes';
-import Acessorios from './pages/Acessorios';
+import Beachwear from './pages/Beachwear';
+import Collections from './pages/Collections';
+import Accessories from './pages/Accessories';
 import Login from './pages/Login';
-import Carrinho from './pages/Carrinho';
+import Cart from './pages/Cart';
 
 export default function App() {
 	return (
 		<>
 			<Header />
-			<div className="container">
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/modapraia" element={<ModaPraia />} />
-					<Route path="/colecoes" element={<Colecoes />} />
-					<Route path="/acessorios" element={<Acessorios />} />
-					<Route path="/carrinho" element={<Carrinho />} />
-					<Route path="/login" element={<Login />} />
-				</Routes>
-			</div>
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/beachwear" element={<Beachwear />} />
+				<Route path="/collections" element={<Collections />} />
+				<Route path="/accessories" element={<Accessories />} />
+				<Route path="/cart" element={<Cart />} />
+				<Route path="/login" element={<Login />} />
+			</Routes>
 		</>
 	);
 }

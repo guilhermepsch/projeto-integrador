@@ -1,0 +1,9 @@
+.header-list-option {
+	text-decoration: none;
+	color: inherit;
+	font-family: Inter, sans-serif;
+}
+
+.isActive {
+	text-decoration: underline;
+}
