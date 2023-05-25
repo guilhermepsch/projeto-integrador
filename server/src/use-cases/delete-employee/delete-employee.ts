@@ -9,6 +9,9 @@ export class DeleteEmployee {
 	}
 
 	async execute(id: number): Promise<void> {
+		if (!(await this.employeeRepository.findById(id))) {
+			throw new Error('Employee not found');
+		}
 		const user: DeleteEmployeeDTO = {
 			id,
 		};

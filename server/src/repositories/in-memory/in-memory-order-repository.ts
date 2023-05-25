@@ -22,7 +22,6 @@ export class InMemoryOrderRepository implements OrderRepository {
             new Date(),
         )
         this.orders.push(newOrder);
-        console.log(this.orders);
     }
 
     async findByNF(order_nf: string): Promise<Order | null>{

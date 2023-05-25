@@ -8,4 +8,5 @@ export interface UserRepository {
 	read(): Promise<User[]>;
 	update(user: UpdateUserDTO): Promise<User>;
 	delete(id: number): Promise<void>;
+	findById(id: number): Promise<User | null>;
 }

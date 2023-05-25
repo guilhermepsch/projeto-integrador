@@ -12,10 +12,6 @@ export class PrismaUserRepository implements UserRepository {
 	}
 
 	async create(user: CreateUserDTO): Promise<void> {
-		if (await this.findByEmail(user.email)) {
-			throw new Error('User already exists');
-		}
-
 		await this.prisma.user.create({
 			data: {
 				user_email: user.email,
@@ -90,5 +86,25 @@ export class PrismaUserRepository implements UserRepository {
 				user_id: id,
 			},
 		});
+	}
+
+	async findById(id: number): Promise<User | null> {
+		const user = await this.prisma.user.findUnique({
+			where: {
+				user_id: id,
+			},
+		});
+
+		if (!user) {
+			return null;
+		}
+
+		return new User(
+			user.user_id,
+			user.user_email,
+			user.user_secret,
+			user.created_at,
+			user.updated_at,
+		);
 	}
 }

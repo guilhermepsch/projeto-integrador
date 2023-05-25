@@ -18,7 +18,6 @@ export class InMemoryCartRepository implements CartRepository {
             new Date(),
         )
         this.carts.push(newCart);
-        console.log(this.carts);
     }
 
     async read(): Promise<Cart[]> {

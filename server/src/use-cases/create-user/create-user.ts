@@ -1,7 +1,7 @@
 import { UserRepository } from '../../repositories/user-repository';
 import { CreateUserDTO } from './create-user-dto';
 
-interface CreateUserRequest {
+export interface CreateUserRequest {
 	email: string;
 	secret: string;
 }
@@ -14,6 +14,9 @@ export class CreateUser {
 	}
 
 	async execute({ email, secret }: CreateUserRequest): Promise<void> {
+		if (await this.userRepository.findByEmail(email)){
+			throw new Error('User already exists');
+		}
 		const user: CreateUserDTO = {
 			email,
 			secret,

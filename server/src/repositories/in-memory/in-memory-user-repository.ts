@@ -11,8 +11,6 @@ export class InMemoryUserRepository implements UserRepository {
 	}
 
 	async create(user: CreateUserDTO): Promise<void> {
-		if (this.users.find(userRepo => userRepo.getEmail() === user.email))
-			throw new Error('User already exists');
 		const newUser = new User(
 			this.users.length + 1,
 			user.email,
@@ -37,7 +35,6 @@ export class InMemoryUserRepository implements UserRepository {
 		const index = this.users.findIndex(
 			userRepo => userRepo.getId() === user.id,
 		);
-		if (index === -1) throw new Error('User not found');
 		const newUser = new User(
 			user.id,
 			user.email,
@@ -51,7 +48,12 @@ export class InMemoryUserRepository implements UserRepository {
 
 	async delete(id: number): Promise<void> {
 		const index = this.users.findIndex(user => user.getId() === id);
-		if (index === -1) throw new Error('User not found');
 		this.users.splice(index, 1);
+	}
+
+	async findById(id: number): Promise<User | null> {
+		const user = this.users.find(user => user.getId() === id);
+		if (!user) return null;
+		return user;
 	}
 }

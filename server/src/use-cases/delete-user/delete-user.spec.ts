@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { User } from '../../entities/user';
 import { InMemoryUserRepository } from '../../repositories/in-memory/in-memory-user-repository';
-import { DeleteUser } from './delete-user';
+import { DeleteUser, DeleteUserRequest } from './delete-user';
 
 describe('delete an user', () => {
 	it('should be able to delete an user', () => {
@@ -17,12 +17,20 @@ describe('delete an user', () => {
 			]),
 		);
 
-		expect(deleteUser.execute(1)).resolves.toBeUndefined();
+		const deleteUserRequest : DeleteUserRequest = {
+			id: 1,
+		}
+
+		expect(deleteUser.execute(deleteUserRequest)).resolves.toBeUndefined();
 	});
 
 	it('should not be able to delete an user that does not exist', () => {
 		const deleteUser = new DeleteUser(new InMemoryUserRepository());
 
-		expect(deleteUser.execute(1)).rejects.toThrowError('User not found');
+		const deleteUserRequest : DeleteUserRequest = {
+			id: 1,
+		}
+
+		expect(deleteUser.execute(deleteUserRequest)).rejects.toThrowError('User not found');
 	});
 });

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { UpdateUser } from './update-user';
+import { UpdateUser, UpdateUserRequest } from './update-user';
 import { PrismaUserRepository } from '../../repositories/prisma/prisma-user-repository';
 import { PrismaClient } from '@prisma/client';
 
@@ -14,14 +14,12 @@ export class UpdateUserController {
 
 	async update(req: Request, res: Response): Promise<Response> {
 		try {
-			const { id } = req.params;
-			const { email, secret } = req.body;
-			const user = await this.updateUser.execute({
-				id: Number(id),
-				email,
-				secret,
-			});
-			return res.status(200).json(user);
+			const updateUserRequest : UpdateUserRequest = {
+				id: Number(req.params.id),
+				email: String(req.body.email),
+				secret: String(req.body.secret),
+			}
+			return res.status(200).json(await this.updateUser.execute(updateUserRequest));
 		} catch (error: any) {
 			return res.status(400).json({ message: error.message });
 		}

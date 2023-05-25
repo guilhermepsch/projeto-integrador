@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CreateEmployee } from './create-employee';
+import { CreateEmployee, CreateEmployeeRequest } from './create-employee';
 import { PrismaEmployeeRepository } from '../../repositories/prisma/prisma-employee-repository';
 import { PrismaClient } from '@prisma/client';
 
@@ -12,11 +12,11 @@ export class CreateEmployeeController {
 	}
 	async create(req: Request, res: Response) {
 		try {
-			const { pis, user_id } = req.body;
-			await this.createEmployee.execute({
-				pis: String(pis),
-				user_id: Number(user_id),
-			});
+			const createEmployeeRequest: CreateEmployeeRequest = {
+				pis: String(req.body.pis),
+				user_id: Number(req.body.user_id),
+			};
+			await this.createEmployee.execute(createEmployeeRequest);
 			return res.status(201).send();
 		} catch (error: any) {
 			return res.status(400).json({ message: error.message });

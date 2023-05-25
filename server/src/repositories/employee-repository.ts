@@ -6,6 +6,7 @@ export interface EmployeeRepository {
 	create(employee: CreateEmployeeDTO): Promise<void>;
 	findByPis(pis: string): Promise<Employee | null>;
 	findByUserId(user_id: number): Promise<Employee | null>;
+	findById(id: number): Promise<Employee | null>;
 	read(): Promise<Employee[]>;
 	update(employee: UpdateEmployeeDTO): Promise<Employee>;
 	delete(id: number): Promise<void>;
