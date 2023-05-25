@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { CreateUser } from './create-user';
+import { CreateUser, CreateUserRequest } from './create-user';
 import { PrismaUserRepository } from '../../repositories/prisma/prisma-user-repository';
 import { PrismaClient } from '@prisma/client';
 
@@ -13,9 +13,12 @@ export class CreateUserController {
 	}
 
 	async create(req: Request, res: Response): Promise<Response> {
-		const { email, secret } = req.body;
+		const createUserRequest : CreateUserRequest = {
+			email: String(req.body.email),
+			secret: String(req.body.secret),
+		}
 		try {
-			await this.createUser.execute({ email, secret });
+			await this.createUser.execute(createUserRequest);
 		} catch (error: any) {
 			return res.status(400).json({ message: error.message });
 		}

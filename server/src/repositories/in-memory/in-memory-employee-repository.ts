@@ -11,12 +11,6 @@ export class InMemoryEmployeeRepository implements EmployeeRepository {
 	}
 
 	async create(employee: CreateEmployeeDTO): Promise<void> {
-		if (await this.findByPis(employee.pis)) {
-			throw new Error('PIS already exists');
-		}
-		if (await this.findByUserId(employee.user_id)) {
-			throw new Error('User already exists');
-		}
 		this.employees.push(
 			new Employee(
 				this.employees.length + 1,
@@ -51,17 +45,11 @@ export class InMemoryEmployeeRepository implements EmployeeRepository {
 	async read(): Promise<Employee[]> {
 		return this.employees;
 	}
+
 	async update(employee: UpdateEmployeeDTO): Promise<Employee> {
 		const index = this.employees.findIndex(
 			employeeRepo => employeeRepo.getId() === employee.id,
 		);
-		if (index === -1) throw new Error('Employee not found');
-		const employeePisExists = await this.findByPis(employee.pis);
-		if (employeePisExists && employeePisExists.getId() !== employee.id)
-			throw new Error('PIS already exists');
-		const employeeUserExists = await this.findByUserId(employee.user_id);
-		if (employeeUserExists && employeeUserExists.getId() !== employee.id)
-			throw new Error('User already exists');
 		const newEmployee = new Employee(
 			employee.id,
 			employee.pis,
@@ -77,7 +65,16 @@ export class InMemoryEmployeeRepository implements EmployeeRepository {
 		const index = this.employees.findIndex(
 			employeeRepo => employeeRepo.getId() === id,
 		);
-		if (index === -1) throw new Error('Employee not found');
 		this.employees.splice(index, 1);
+	}
+
+	async findById(id: number): Promise<Employee | null> {
+		const employee = this.employees.find(
+			employee => employee.getId() === id,
+		);
+		if (!employee) {
+			return null;
+		}
+		return employee;
 	}
 }

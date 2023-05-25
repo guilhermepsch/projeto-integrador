@@ -62,7 +62,7 @@ describe('update employee', () => {
 		expect(
 			updateEmployee.execute({
 				id: 1,
-				pis: '123123',
+				pis: '321213',
 				user_id: 2,
 			}),
 		).rejects.toThrowError('User already exists');

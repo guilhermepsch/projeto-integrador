@@ -19,7 +19,6 @@ export class InMemoryCatalogueRepository implements CatalogueRepository {
       catalogue.title,
     );
     this.catalogues.push(newCatalogue); 
-    this.catalogues.map((catalogue) => console.log(catalogue));
   }
   async findByName(title: string): Promise<Catalogue | null> {
     const catalogue = this.catalogues.find(catalogue => catalogue.getTitle() === title);

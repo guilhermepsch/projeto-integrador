@@ -12,12 +12,6 @@ export class PrismaEmployeeRepository implements EmployeeRepository {
 	}
 
 	async create(employee: CreateEmployeeDTO): Promise<void> {
-		if (await this.findByPis(employee.pis)) {
-			throw new Error('Employee with this pis already exists');
-		}
-		if (await this.findByUserId(employee.user_id)) {
-			throw new Error('Employee with this user_id already exists');
-		}
 		await this.prisma.employee.create({
 			data: {
 				empl_pis: employee.pis,
@@ -90,17 +84,6 @@ export class PrismaEmployeeRepository implements EmployeeRepository {
 	}
 
 	async update(employee: UpdateEmployeeDTO): Promise<Employee> {
-		const employeePisExists = await this.findByPis(employee.pis);
-		if (employeePisExists && employeePisExists.getId() !== employee.id) {
-			throw new Error('Employee with this pis already exists');
-		}
-		const employeeUserIdExists = await this.findByUserId(employee.user_id);
-		if (
-			employeeUserIdExists &&
-			employeeUserIdExists.getId() !== employee.id
-		) {
-			throw new Error('Employee with this user_id already exists');
-		}
 		const updatedEmployee = await this.prisma.employee.update({
 			where: {
 				empl_id: employee.id,
@@ -125,11 +108,30 @@ export class PrismaEmployeeRepository implements EmployeeRepository {
 			updatedEmployee.updated_at,
 		);
 	}
+
 	async delete(id: number): Promise<void> {
 		await this.prisma.employee.delete({
 			where: {
 				empl_id: id,
 			},
 		});
+	}
+
+	async findById(id: number): Promise<Employee | null> {
+		const employee = await this.prisma.employee.findUnique({
+			where: {
+				empl_id: id,
+			},
+		});
+		if (!employee) {
+			return null;
+		}
+		return new Employee(
+			employee.empl_id,
+			employee.empl_pis,
+			employee.user_id,
+			employee.created_at,
+			employee.updated_at,
+		);
 	}
 }

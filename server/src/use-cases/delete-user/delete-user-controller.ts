@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DeleteUser } from './delete-user';
+import { DeleteUser, DeleteUserRequest } from './delete-user';
 import { PrismaUserRepository } from '../../repositories/prisma/prisma-user-repository';
 import { PrismaClient } from '@prisma/client';
 
@@ -14,8 +14,10 @@ export class DeleteUserController {
 
 	async delete(req: Request, res: Response): Promise<Response> {
 		try {
-			const { id } = req.params;
-			await this.deleteUser.execute(Number(id));
+			const deleteUserRequest : DeleteUserRequest = {
+				id: Number(req.params.id),
+			}
+			await this.deleteUser.execute(deleteUserRequest);
 			return res.status(200).send();
 		} catch (error: any) {
 			return res.status(400).json({ message: error.message });
