@@ -15,6 +15,9 @@ export class UpdateCart {
     }
 
     async execute({ id, clie_id }: UpdateCartRequest): Promise<Cart> {
+        if (!(await this.cartRepository.findById(id))) {
+            throw new Error('Cart not found');
+        }
         const cart: UpdateCartDTO = {
             id,
             clie_id

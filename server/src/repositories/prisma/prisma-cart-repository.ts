@@ -19,6 +19,40 @@ export class PrismaCartRepository implements CartRepository {
     });
   }
 
+  async findById(id: number): Promise<Cart | null> {
+    const cart = await this.prisma.cart.findUnique({
+      where: {
+        cart_id: id,
+      },
+    });
+    if (!cart) {
+      return null;
+    }
+    return new Cart(
+      cart.cart_id,
+      cart.clie_id,
+      cart.created_at,
+      cart.updated_at
+    );
+  }
+
+  async findByClientId(id_clie: number): Promise<Cart | null> {
+    const cart = await this.prisma.cart.findFirst({
+      where: {
+        clie_id: id_clie,
+      },
+    });
+    if (!cart) {
+      return null;
+    }
+    return new Cart(
+      cart.cart_id,
+      cart.clie_id,
+      cart.created_at,
+      cart.updated_at
+    );
+  }
+  
   async read(): Promise<Cart[]> {
     const carts = await this.prisma.cart.findMany();
     return carts.map(

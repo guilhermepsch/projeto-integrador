@@ -15,15 +15,16 @@ export class UpdateCartController {
 
     async update(req: Request, res: Response): Promise<Response> {
         try {
-            const { id } = req.params;
-            const { clie_id } = req.body;
-            const cart = await this.updateCart.execute({
-                id: Number(id),
-                clie_id: Number(clie_id)
-            });
+            const updateCartRequest = {
+                id: Number(req.params.id),
+                clie_id: Number(req.body.clie_id),
+            };
+            const cart = await this.updateCart.execute(
+                updateCartRequest,
+            );
             return res.status(200).json(cart);
-        } catch(error: any){
-            return res.status(400).json({message: error.message});
+        } catch (error: any) {
+            return res.status(400).json({ message: error.message });
         }
     }
 }

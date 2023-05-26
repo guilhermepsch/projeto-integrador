@@ -20,6 +20,16 @@ export class InMemoryCartRepository implements CartRepository {
         this.carts.push(newCart);
     }
 
+    async findById(id: number): Promise<Cart | null> {
+        const cart = this.carts.find(cart => cart.getId() === id);
+        return cart ?? null;
+    }
+
+    async findByClientId(id_clie: number): Promise<Cart | null> {
+        const cart = this.carts.find(cart => cart.getIdClie() === id_clie);
+        return cart ?? null;    
+    }
+
     async read(): Promise<Cart[]> {
         return this.carts;
     }
@@ -28,7 +38,6 @@ export class InMemoryCartRepository implements CartRepository {
         const index = this.carts.findIndex(
             cartRepo => cartRepo.getId() === cart.id,
         );
-        if (index === -1) throw new Error('Cart not found');
         const newCart = new Cart(
             cart.id, 
             cart.clie_id,
@@ -41,7 +50,6 @@ export class InMemoryCartRepository implements CartRepository {
 
     async delete(id: number): Promise<void> {
         const index = this.carts.findIndex(cart => cart.getId() === id);
-        if (index === -1) throw new Error('Cart not found');
         this.carts.splice(index, 1);
     }
 }

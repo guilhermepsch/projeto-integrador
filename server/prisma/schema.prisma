@@ -70,13 +70,11 @@ model ClientAddress {
 }
 
 model Catalogue {
-
   cata_id    Int       @id @default(autoincrement())
   cata_title String
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   Product    Product[]
-
 }
 
 model Product {
@@ -98,9 +96,9 @@ model Cart {
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 
-  Client Client  @relation(fields: [clie_id], references: [clie_id])
+  Client Client @relation(fields: [clie_id], references: [clie_id])
   Item   Item[]
-  Order  Order[]
+  Order  Order?
 }
 
 model Item {
@@ -117,7 +115,7 @@ model Order {
   orde_id     Int      @id @default(autoincrement())
   orde_nf     String   @unique
   orde_status Int
-  cart_id     Int
+  cart_id     Int      @unique
   created_at  DateTime @default(now())
   updated_at  DateTime @default(now()) @updatedAt
 

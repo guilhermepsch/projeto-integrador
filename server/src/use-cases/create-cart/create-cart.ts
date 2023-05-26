@@ -1,7 +1,7 @@
 import { CartRepository } from "../../repositories/cart-repository";
 import { CreateCartDTO } from "./create-cart-dto";
 
-interface CreateCartRequest {
+export type CreateCartRequest = {
     id_clie: number;
 }
 
@@ -12,7 +12,10 @@ export class CreateCart {
         this.cartRepository = cartRepository;
     }
 
-    async execute ({id_clie}: CreateCartRequest): Promise<void> {
+    async execute ({id_clie}: CreateCartRequest){
+        if (await this.cartRepository.findByClientId(id_clie)) {
+            throw new Error('Cart already exists');
+        }
         const cart: CreateCartDTO = {
             id_clie
         };

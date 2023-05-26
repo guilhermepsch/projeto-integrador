@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { UpdateOrder } from './update-order';
 import { PrismaOrderRepository } from '../../repositories/prisma/prisma-order-repository';
 import { PrismaClient } from '@prisma/client';
+import { PrismaCartRepository } from '../../repositories/prisma/prisma-cart-repository';
 
 export class UpdateOrderController {
     private updateOrder: UpdateOrder;
@@ -9,6 +10,7 @@ export class UpdateOrderController {
     constructor() {
         this.updateOrder = new UpdateOrder(
             new PrismaOrderRepository(new PrismaClient()),
+            new PrismaCartRepository(new PrismaClient()),
         );
     }
 

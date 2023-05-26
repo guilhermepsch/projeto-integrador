@@ -3,14 +3,6 @@ import { PrismaClient } from "@prisma/client";
 import { PrismaOrderRepository } from "../../repositories/prisma/prisma-order-repository";
 import { ReadOrder } from "./read-order";
 
-export type ReadListRequest = {
-    page: number;
-    limit: number;
-    range: number;
-    order: string;
-    direction: string;
-};
-
 export class ReadOrderController {
     private readOrder: ReadOrder;
 
