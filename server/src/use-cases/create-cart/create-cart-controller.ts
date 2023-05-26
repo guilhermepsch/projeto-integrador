@@ -12,13 +12,15 @@ export class CreateCartController {
         );
     }
 
-    async create(req: Request, res: Response): Promise<Response> {
-        const { id_clie } = req.body;
+    async create(req: Request, res: Response) {
         try {
-            await this.createCart.execute({ id_clie });
+            const createCartRequest = {
+                clie_id: Number(req.body.clie_id),
+            };
+            await this.createCart.execute(createCartRequest);
+            return res.status(201).send();
         } catch (error: any) {
-            return res.status(400).json({ message: error.message});
+            return res.status(400).json({ message: error.message });
         }
-        return res.status(201).send();
     }
 }

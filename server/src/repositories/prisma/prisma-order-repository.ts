@@ -42,6 +42,46 @@ export class PrismaOrderRepository implements OrderRepository {
         );
     }
 
+    async findByCartId(cart_id: number): Promise<Order | null> {
+        const order = await this.prisma.order.findFirst({
+            where: {
+                cart_id: cart_id,
+            }
+            }, 
+        );
+
+        if (!order) {
+            return null;
+        }
+        return new Order(
+            order.orde_id,
+            order.orde_status,
+            order.cart_id,
+            order.orde_nf,
+            order.created_at,
+            order.updated_at,
+        );
+    }
+
+    async findById(id: number): Promise<Order | null> {
+        const order = await this.prisma.order.findUnique({
+            where: {
+                orde_id: id,
+            },
+        });
+        if (!order) {
+            return null;
+        }
+        return new Order(
+            order.orde_id,
+            order.orde_status,
+            order.cart_id,
+            order.orde_nf,
+            order.created_at,
+            order.updated_at,
+        );
+    }
+    
     async read(): Promise<Order[]> {
         const orders = await this.prisma.order.findMany();
         return orders.map(

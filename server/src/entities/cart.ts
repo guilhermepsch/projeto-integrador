@@ -1,17 +1,17 @@
 export class Cart {
     private id: number;
-    private id_clie: number;
+    private clie_id: number;
     private createdAt: Date;
     private updatedAt: Date;
 
     constructor(
         id: number,
-        id_clie: number,
+        clie_id: number,
         createdAt: Date,
         updatedAt: Date
     ) {
         this.id = id;
-        this.id_clie = id_clie;
+        this.clie_id = clie_id;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -20,8 +20,8 @@ export class Cart {
         return this.id;
     }
 
-    public getIdClie(): number{
-        return this.id_clie;
+    public getClieId(): number{
+        return this.clie_id;
     }
 
     public getCreatedAt(): Date {

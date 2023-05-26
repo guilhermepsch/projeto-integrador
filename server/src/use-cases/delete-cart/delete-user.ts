@@ -9,6 +9,9 @@ export class DeleteCart {
     }
 
     async execute(id: number): Promise<void> {
+        if (!(await this.cartRepository.findById(id))) {
+            throw new Error('Cart not found');
+        }
         const cart: DeleteCartDTO = {
             id,
         };

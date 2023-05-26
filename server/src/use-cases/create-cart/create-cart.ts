@@ -1,8 +1,8 @@
 import { CartRepository } from "../../repositories/cart-repository";
 import { CreateCartDTO } from "./create-cart-dto";
 
-interface CreateCartRequest {
-    id_clie: number;
+export type CreateCartRequest = {
+    clie_id: number;
 }
 
 export class CreateCart {
@@ -12,9 +12,9 @@ export class CreateCart {
         this.cartRepository = cartRepository;
     }
 
-    async execute ({id_clie}: CreateCartRequest): Promise<void> {
+    async execute ({clie_id}: CreateCartRequest){
         const cart: CreateCartDTO = {
-            id_clie
+            clie_id
         };
         await this.cartRepository.create(cart);
     }
