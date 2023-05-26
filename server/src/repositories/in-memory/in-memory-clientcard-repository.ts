@@ -1,5 +1,5 @@
 import { ClientCard } from "../../entities/clientcard";
-import { CreateClientCardDTO } from '../../use-cases/create-clientcard/create-clientcard';
+import { CreateClientCardDTO } from "../../use-cases/create-clientcard/create-clientcard-dto";
 import { UpdateClientCardDTO } from '../../use-cases/update-clientcard/update-clientcard-dto';
 import { ClientCardRepository } from '../clientcard-repository';
 
@@ -11,7 +11,7 @@ export class InMemoryClientCardRepository implements ClientCardRepository {
     }
 
     async create(clientcard: CreateClientCardDTO): Promise<void> {
-        if (this.clientcards.find(clientcardRepo => clientcardRepo.getId() == clientcard))
+        if (this.clientcards.find(clientcardRepo => clientcardRepo.getId() == clientcard.id))
             throw new Error('Client card already exists');
         const newClientCard = new ClientCard(
             this.clientcards.length + 1,
@@ -56,7 +56,7 @@ export class InMemoryClientCardRepository implements ClientCardRepository {
     }
 
     async delete(id: number): Promise<void> {
-        const index = this.clientcards.findIndex(clientcard => clientcard.getId() === id);]
+        const index = this.clientcards.findIndex(clientcard => clientcard.getId() === id);
         if (index === -1) throw new Error('Client card not found');
         this.clientcards.splice(index, 1);
     }

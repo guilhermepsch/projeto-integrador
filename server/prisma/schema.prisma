@@ -42,14 +42,15 @@ model Client {
 }
 
 model ClientCards {
-  clca_id          Int      @id @default(autoincrement())
-  clca_cvv         Int
-  clca_holder_name String
-  clca_cpf         String
-  clca_number      String
-  client_id        Int
-  created_at       DateTime @default(now())
-  updated_at       DateTime @default(now()) @updatedAt
+  clca_id              Int      @id @default(autoincrement())
+  clca_cvv             Int
+  clca_holder_name     String
+  clca_expiration_date String
+  clca_cpf             String
+  clca_number          String
+  client_id            Int
+  created_at           DateTime @default(now())
+  updated_at           DateTime @default(now()) @updatedAt
 
   client Client @relation(fields: [client_id], references: [clie_id])
 }

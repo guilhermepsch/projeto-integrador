@@ -9,6 +9,7 @@ describe('create a client card', () => {
 
         expect(
             createClientCard.execute({
+                id: 1,
                 cvv: '123',
                 cardholder: 'John Doe',
                 expirationDate: '2017-',
@@ -36,6 +37,7 @@ describe('create a client card', () => {
 
         expect(
             createClientCard.execute({
+                id: 1,
                 cvv: '123',
                 cardholder: 'John Doe',
                 expirationDate: '2017-',

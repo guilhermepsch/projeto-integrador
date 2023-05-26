@@ -16,14 +16,17 @@ export class PrismaClientCardRepository implements ClientCardRepository {
             throw new Error('Client card already exists');
         }
 
+        
         await this.prisma.clientcard.create({
             data: {
-                clientcard_cvv: clientcard.cvv,
-                clientcard_cardholder: clientcard.cardholder,
-                clientcard_expirationDate: clientcard.expirationDate,
-                clientcard_cpf: clientcard.cpf,
-                clientcard_cardnumber: clientcard.cardnumber,
-            },
+                clca_id: clientcard.id,
+                clca_cvv: clientcard.cvv,            
+                clca_holder_name: clientcard.cardholder,
+                clca_expiration_date: clientcard.expirationDate,
+                clca_cpf: clientcard.cpf,
+                clca_number: clientcard.cardnumber,
+                client_id: clientcard.clientId,
+            }
         });
     }
 
