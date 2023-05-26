@@ -1,7 +1,7 @@
 import { Order } from "../../entities/order";
+import { CartRepository } from "../../repositories/cart-repository";
 import { OrderRepository } from "../../repositories/order-repository";
 import { UpdateOrderDTO } from "./update-order-dto";
-import { CartRepository } from "../../repositories/cart-repository";
 
 export interface UpdateOrderRequest {
     id: number;
@@ -33,7 +33,7 @@ export class UpdateOrder {
         if (orderWithSameCartId && orderWithSameCartId.getId() !== id) {
             throw new Error('Cart already exists');
         }
-        if (!(await this.orderRepository.findById(cart_id))) {
+        if (!(await this.cartRepository.findById(cart_id))) {
             throw new Error('Cart not found');
         }
         const order: UpdateOrderDTO = {

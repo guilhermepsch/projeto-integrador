@@ -13,7 +13,7 @@ export class InMemoryCartRepository implements CartRepository {
     async create(cart: CreateCartDTO): Promise<void>{
         const newCart = new Cart(
             this.carts.length + 1,
-            cart.id_clie,
+            cart.clie_id,
             new Date(),
             new Date(),
         )
@@ -25,8 +25,8 @@ export class InMemoryCartRepository implements CartRepository {
         return cart ?? null;
     }
 
-    async findByClientId(id_clie: number): Promise<Cart | null> {
-        const cart = this.carts.find(cart => cart.getIdClie() === id_clie);
+    async findByClientId(clie_id: number): Promise<Cart | null> {
+        const cart = this.carts.find(cart => cart.getClieId() === clie_id);
         return cart ?? null;    
     }
 

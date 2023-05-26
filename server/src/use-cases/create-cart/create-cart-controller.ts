@@ -15,7 +15,7 @@ export class CreateCartController {
     async create(req: Request, res: Response) {
         try {
             const createCartRequest = {
-                id_clie: Number(req.body.id_clie),
+                clie_id: Number(req.body.clie_id),
             };
             await this.createCart.execute(createCartRequest);
             return res.status(201).send();

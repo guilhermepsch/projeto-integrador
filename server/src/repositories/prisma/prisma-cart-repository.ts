@@ -14,7 +14,7 @@ export class PrismaCartRepository implements CartRepository {
   async create(cart: CreateCartDTO): Promise<void> {
     await this.prisma.cart.create({
       data: {
-        clie_id: cart.id_clie,
+        clie_id: cart.clie_id,
       },
     });
   }

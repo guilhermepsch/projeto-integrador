@@ -1,3 +1,3 @@
 export interface CreateCartDTO {
-    id_clie: number;
+    clie_id: number;
 }
