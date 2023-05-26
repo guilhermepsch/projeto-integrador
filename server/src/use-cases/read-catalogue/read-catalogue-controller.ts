@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { ReadCatalogue } from './read-catalogue';
 import { PrismaCatalogueRepository } from '../../repositories/prisma/prisma-catalogue-repository';
 import { PrismaClient } from '@prisma/client';
-import { InMemoryCatalogueRepository } from '../../repositories/in-memory/in-memory-catalogue-repository';
 
 export type ReadListRequest = {
 	page: number;
@@ -12,12 +11,12 @@ export type ReadListRequest = {
 	direction: string;
 };
 
-export class ReadCatalogueController{
+export class ReadCatalogueController {
 	private readCatalogue: ReadCatalogue;
 
 	constructor() {
 		this.readCatalogue = new ReadCatalogue(
-      new InMemoryCatalogueRepository()
+			new PrismaCatalogueRepository(new PrismaClient()),
 		);
 	}
 

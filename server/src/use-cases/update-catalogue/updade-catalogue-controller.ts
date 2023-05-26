@@ -2,14 +2,13 @@ import { Request, Response } from 'express';
 import { UpdateCatalogue } from './update-catalogue';
 import { PrismaCatalogueRepository } from '../../repositories/prisma/prisma-catalogue-repository';
 import { PrismaClient } from '@prisma/client';
-import { InMemoryCatalogueRepository } from '../../repositories/in-memory/in-memory-catalogue-repository';
 
 export class UpdataCatalogueController {
 	private updateCatalogue: UpdateCatalogue;
 
 	constructor() {
 		this.updateCatalogue = new UpdateCatalogue(
-			new InMemoryCatalogueRepository()
+			new PrismaCatalogueRepository(new PrismaClient())
 		);
 	}
 
