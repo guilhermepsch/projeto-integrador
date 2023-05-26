@@ -8,7 +8,6 @@ describe('delete a customer', () => {
         const deleteCustomer = new DeleteCustomer(
             new InMemoryCustomerRepository([
                 new Customer(
-                    //analisar dps
                     1,
                     20,
                     new Date(),
