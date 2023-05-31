@@ -19,6 +19,10 @@ import { CreateProductController } from './use-cases/create-product/create-produ
 import { ReadProductController } from './use-cases/read-product/read-product-controller';
 import { UpdateProductController } from './use-cases/update-product/update-product-controller';
 import { DeleteProductController } from './use-cases/delete-product/delete-product-controller';
+import { CreateItemController } from './use-cases/create-item/create-item-controller';
+import { ReadItemController } from './use-cases/read-item/read-item-controller';
+import { UpdateItemController } from './use-cases/update-item/update-item-controller';
+import { DeleteItemController } from './use-cases/delete-item/delete-item-controller';
 
 
 const routes = express.Router();
@@ -60,9 +64,15 @@ routes.delete('/catalogue/:id', (req, res) =>new DeleteCatalogueController().del
 
 //product routes
 routes.post('/product', (req, res) => new CreateProductController().create(req, res));
- routes.get('/product', (req, res) => new ReadProductController().read(req, res));
- routes.put('/product/:id', (req, res) =>new UpdateProductController().update(req, res),);
-	routes.delete('/product/:id', (req, res) =>new DeleteProductController().delete(req, res),);
+routes.get('/product', (req, res) => new ReadProductController().read(req, res));
+routes.put('/product/:id', (req, res) =>new UpdateProductController().update(req, res),);
+routes.delete('/product/:id', (req, res) =>new DeleteProductController().delete(req, res),);
+
+//item routes
+routes.post('/item', (req, res) => new CreateItemController().create(req, res));
+routes.get('/item', (req, res) => new ReadItemController().read(req, res));
+routes.put('/item/:id', (req, res) =>new UpdateItemController().update(req, res),);
+routes.delete('/item/:id', (req, res) =>new DeleteItemController().delete(req, res),);
 
 export default routes;
 
