@@ -19,6 +19,11 @@ import { CreateCatalogueController } from './use-cases/create-catalogue/create-c
 import { ReadCatalogueController } from './use-cases/read-catalogue/read-catalogue-controller';
 import { UpdataCatalogueController } from './use-cases/update-catalogue/updade-catalogue-controller';
 import { DeleteCatalogueController } from './use-cases/delete-catalogue/delete-catalogue-controller';
+import { CreateItemController } from './use-cases/create-item/create-item-controller';
+import { ReadItemController } from './use-cases/read-item/read-item-controller';
+import { UpdateItemController } from './use-cases/update-item/update-item-controller';
+import { DeleteItemController } from './use-cases/delete-item/delete-item-controller';
+
 
 const routes = express.Router();
 
@@ -75,6 +80,12 @@ routes.post('/catalogue', (req, res) => new CreateCatalogueController().create(r
 routes.get('/catalogue', (req, res) => new ReadCatalogueController().read(req, res));
 routes.put('/catalogue/:id', (req, res) =>new UpdataCatalogueController().update(req, res),);
 routes.delete('/catalogue/:id', (req, res) =>new DeleteCatalogueController().delete(req, res),);
+
+//item routes
+routes.post('/item', (req, res) => new CreateItemController().create(req, res));
+routes.get('/item', (req, res) => new ReadItemController().read(req, res));
+routes.put('/item/:id', (req, res) =>new UpdateItemController().update(req, res),);
+routes.delete('/item/:id', (req, res) =>new DeleteItemController().delete(req, res),);
 
 export default routes;
 
