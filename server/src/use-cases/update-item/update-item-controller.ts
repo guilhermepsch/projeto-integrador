@@ -1,5 +1,4 @@
 import { Request , Response } from 'express';
-import { ItemRepository } from '../../repositories/item-repository';
 import { PrismaClient } from '@prisma/client';
 import { PrismaItemRepository } from '../../repositories/prisma/prisma-item-repository';
 import { UpdateItem } from './update-item';
