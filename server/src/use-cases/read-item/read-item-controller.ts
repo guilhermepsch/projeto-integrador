@@ -16,7 +16,7 @@ export class ReadItemController{
 
   async read(req : Request, res : Response): Promise<Response>{
     try{
-      const items = await this.readItem.execute
+      const items = await this.readItem.execute()
       return res.status(200).json(items)
     }catch(err){
       return res.status(400).json({

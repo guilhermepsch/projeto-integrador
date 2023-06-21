@@ -14,13 +14,10 @@ export class DeleteItemController {
   } 
 
 
-  async delete (req : Request , res : Response) : Promise<Response> {
-    try{
-        const id = req.params.id
-        const item: DeleteItemDTO = {
-          id: Number(id),
-        };
-        await this.deleteItem.execute(item);
+  async delete(req: Request, res: Response): Promise<Response> {
+    try {
+        const { id } = req.params;
+        await this.deleteItem.execute(Number(id));
         return res.json({id}).status(200).send();
     }catch (error: any) {
         return res.status(400).json({ message: error.message });

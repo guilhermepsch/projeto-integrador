@@ -12,16 +12,19 @@ export class CreateItemController{
   );;
   }
 
-  async create(request: Request, response: Response): Promise<Response>{
-    const {prod_id, cart_id} = request.body;
+  async create(req: Request, res: Response): Promise<Response>{
+      try{
+        const createItemRequest = {
+          prod_id: Number(req.body.prod_id),
+          cart_id: Number(req.body.cart_id),
 
-    try{
-      await this.createItem.execute({prod_id, cart_id});
-      return response.status(201).send();
-    }catch(err){
-      return response.status(400).json({
-        message: 'Unexpected error on create item'
-      })
-    }
+        };
+        await this.createItem.execute(createItemRequest);
+        return res.status(201).send();
+      }catch(err){
+        return res.status(400).json({
+          message: 'Unexpected error on create item'
+        })
+      }
   }
 }

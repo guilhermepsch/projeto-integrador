@@ -10,8 +10,12 @@ export class DeleteItem {
   }
 
   async execute(id: number): Promise<void> {
-    const item = await this.itemRepository.findById(id);
-    if (!item) throw new Error('Item not found');
-    await this.itemRepository.delete(id);
+    if (!(await this.itemRepository.findById(id))) {
+      throw new Error('Item not found');
+  }
+  const item: DeleteItemDTO = {
+    id,
+  };
+  await this.itemRepository.delete(item.id);
   }
 }

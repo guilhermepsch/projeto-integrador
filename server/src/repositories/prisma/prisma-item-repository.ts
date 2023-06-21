@@ -1,10 +1,9 @@
 import { PrismaClient } from '@prisma/client';
 import { ItemRepository} from '../item-repository';
-import { Item } from '../../entities/item';
 import { CreateItemDTO } from '../../use-cases/create-item/create-item-dto';
 import { UpdateItemDTO } from '../../use-cases/update-item/update-item-dto';
-
-
+import { Item } from '../../entities/item';
+  
 export class PrismaItemRepository implements ItemRepository{
   private prisma: PrismaClient;
   
@@ -12,17 +11,7 @@ export class PrismaItemRepository implements ItemRepository{
     this.prisma = prisma;
   }
 
-
   async create(item: CreateItemDTO): Promise<void> {
-    if (item.prod_id === null || item.prod_id === undefined) {
-      throw new Error("Product ID is invalid");
-    }
-
-   if(item.cart_id === undefined){
-    throw new Error("Cart ID is invalid");
-
-   }
-
     await this.prisma.item.create({
       data: {
         prod_id: item.prod_id,
@@ -33,27 +22,15 @@ export class PrismaItemRepository implements ItemRepository{
   }
   async read(): Promise<Item[]> {
     const items = await this.prisma.item.findMany();
-    return items.map(item => new Item(item.item_id, item.prod_id, item.cart_id));
+    return items.map(item => new Item(item.item_id, item.prod_id, item.cart_id, item.created_at, item.updated_at));
 
   }
   async delete(id: number): Promise<void> {
-    const itemExists = await this.prisma.item.findUnique({
-      where: {
-        item_id: id
-      }
-    })
-
-    if (itemExists) {
-      throw new Error("Item not found");
-    }
-
     await this.prisma.item.delete({
       where: {
         item_id: id
       }
     })
-
-
   }
 
   async findById(id: number): Promise<Item | null> {
@@ -62,12 +39,15 @@ export class PrismaItemRepository implements ItemRepository{
         item_id: id
       }
     })
-
     if (!item) {
       return null;
     }
-
-    return new Item(item.item_id, item.prod_id, item.cart_id);
+    return new Item(
+      item.item_id, 
+      item.prod_id, 
+      item.cart_id, 
+      item.created_at, 
+      item.updated_at);
   }
 
 
@@ -89,6 +69,8 @@ export class PrismaItemRepository implements ItemRepository{
     updateItem.item_id, 
     updateItem.prod_id,
     updateItem.cart_id,
+    updateItem.created_at,
+    updateItem.updated_at
   );
     
   }

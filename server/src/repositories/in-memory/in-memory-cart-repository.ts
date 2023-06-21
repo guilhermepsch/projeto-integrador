@@ -25,15 +25,16 @@ export class InMemoryCartRepository implements CartRepository {
         return cart ?? null;
     }
 
+    async read(): Promise<Cart[]> {
+        return this.carts;
+    }
+
     async findByClientId(clie_id: number): Promise<Cart | null> {
         const cart = this.carts.find(cart => cart.getClieId() === clie_id);
         return cart ?? null;    
     }
 
-    async read(): Promise<Cart[]> {
-        return this.carts;
-    }
-
+   
     async update(cart: UpdateCartDTO): Promise<Cart> {
         const index = this.carts.findIndex(
             cartRepo => cartRepo.getId() === cart.id,
