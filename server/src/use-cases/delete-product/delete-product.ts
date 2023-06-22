@@ -1,5 +1,4 @@
 import { ProductRepository } from "../../repositories/product-repository";
-import { DeleteOrderDTO } from "../delete-order/delete-order-dto";
 import { DeleteProductDTO } from "./delete-product-dto";
 
 export class DeleteProduct {
@@ -14,7 +13,7 @@ async execute(id: number): Promise<void> {
     if (!(await this.productRepository.findById(id))) {
         throw new Error('Product not found');
     }
-    const product: DeleteOrderDTO = {
+    const product: DeleteProductDTO = {
         id,
     };
     await this.productRepository.delete(product.id);
