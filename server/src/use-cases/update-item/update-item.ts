@@ -18,6 +18,13 @@ export class UpdateItem{
 	}
 
   async execute ({id , id_cart , id_product} : UpdateItemRequest) : Promise<Item> {
+    if (!(await this.itemRepository.findById(id))) {
+      throw new Error('Item not found');
+    }
+    if (id === null) {
+      throw new Error("id invallid");
+    }
+    
     const item: UpdateItemDTO = {
       id,
       id_cart,

@@ -13,6 +13,12 @@ export class DeleteItem {
     if (!(await this.itemRepository.findById(id))) {
       throw new Error('Item not found');
   }
+
+    if (id === null) {
+      throw new Error("id invallid");
+    }
+
+    
   const item: DeleteItemDTO = {
     id,
   };

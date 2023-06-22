@@ -14,6 +14,14 @@ export class CreateItem {
   }
 
   async execute({ prod_id, cart_id }: CreateItemRequest): Promise<void> {
+    
+    if (prod_id === null) {
+      throw new Error("Prod_id invallid");
+    }
+    if (cart_id !== null) {
+      throw new Error("cart_id invallid");
+    }
+
     const item: CreateItemDTO = {
       prod_id,
       cart_id

@@ -35,10 +35,6 @@ export class Item{
     return this.created_at
   }
 
-  public setCreated_at(created_at : Date | null) : void{
-    this.created_at = created_at
-  }
-
   public getUpdated_at() : Date | null{
     return this.updated_at
   }
