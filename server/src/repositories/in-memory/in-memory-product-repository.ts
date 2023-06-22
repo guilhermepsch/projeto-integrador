@@ -34,6 +34,8 @@ export class InMemoryProductRepository implements ProductRepository{
       product.img,
       product.cata_id,
       product.prod_desc,
+      new Date(),
+      new Date()
   );
   this.products[index] = newProduct;
   return newProduct;
@@ -53,7 +55,8 @@ export class InMemoryProductRepository implements ProductRepository{
       product.img,
       product.cata_id,
       product.prod_desc,
-
+      new Date(),
+      new Date()
     );
     this.products.push(newProduct);
 
