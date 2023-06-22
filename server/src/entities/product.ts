@@ -5,6 +5,8 @@ export class Product{
   private prod_img: string;
   private cata_id: number;
   private prod_desc: string;
+  private created_at: Date;
+  private updated_at: Date;
 
 
 
@@ -16,6 +18,8 @@ export class Product{
     img: string,
     cata_id: number,
     prod_desc: string,
+    created_at: Date,
+    updated_at: Date
   ) {
     this.prod_id = id;
     this.prod_name = name;
@@ -23,6 +27,8 @@ export class Product{
     this.cata_id = cata_id;
     this.prod_desc = prod_desc;
     this.prod_img = img;
+    this.created_at = created_at;
+    this.updated_at = updated_at;
   }
 
   public getId(): number {

@@ -41,6 +41,8 @@ export class PrismaProductRepository implements ProductRepository{
         product.prod_image,
         product.cata_id,
         product.prod_description,
+        product.created_at,
+        product.updated_at,
     );
   }
   async update(product: UpdateProductDTO): Promise<Product> {
@@ -54,6 +56,7 @@ export class PrismaProductRepository implements ProductRepository{
         prod_image: product.img,
         cata_id: product.cata_id,
         prod_description: product.prod_desc,
+        updated_at: new Date(),
       },
     });
     return new Product(
@@ -63,6 +66,8 @@ export class PrismaProductRepository implements ProductRepository{
       updatedProduct.prod_image,
       updatedProduct.cata_id,
       updatedProduct.prod_description,
+      updatedProduct.created_at,
+      updatedProduct.updated_at,
     );
   }
   async read(): Promise<Product[]> {
@@ -74,6 +79,8 @@ export class PrismaProductRepository implements ProductRepository{
       product.prod_image,
       product.cata_id,
       product.prod_description,
+      product.created_at,
+      product.updated_at,
     ));
   }
   async create(product: CreateProductDTO): Promise<void> {
@@ -84,6 +91,8 @@ export class PrismaProductRepository implements ProductRepository{
         prod_image: product.img,
         cata_id: product.cata_id,
         prod_description: product.prod_desc,
+        created_at: new Date(),
+        updated_at: new Date(),
       }
     })
 
@@ -107,6 +116,8 @@ export class PrismaProductRepository implements ProductRepository{
         product.prod_image,
         product.cata_id,
         product.prod_description,
+        product.created_at,
+        product.updated_at,
     );
   }
 
