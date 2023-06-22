@@ -20,6 +20,8 @@ export class CreateProduct{
     if(await this.productRepository.findByName(name)){
       throw new Error("Product already exists");
     }
+
+    
     const product: CreateProductDTO = {name, price, img, cata_id, prod_desc};
     await this.productRepository.create(product);
   }

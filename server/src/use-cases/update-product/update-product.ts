@@ -10,6 +10,15 @@ export class UpdateProduct {
   }
 
   async update(product: UpdateProductDTO): Promise<Product> {
+    if (await this.productRepository.findByName(product.name)) {
+      throw new Error("Product already exists");
+    }
+
+    if (!await this.productRepository.findById(product.id)) {
+      throw new Error("Product not found");
+    }
+
+    
     return await this.productRepository.update(product);
   }
 }
