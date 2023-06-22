@@ -76,5 +76,12 @@ export class Product{
     return this.prod_img;
   }
 
+  public getCreatedAt(): Date {
+		return this.createdAt;
+	}
+
+	public getUpdatedAt(): Date {
+		return this.updatedAt;
+	}
   
 }
