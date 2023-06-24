@@ -77,11 +77,11 @@ export class Product{
   }
 
   public getCreatedAt(): Date {
-		return this.createdAt;
+		return this.created_at;
 	}
 
 	public getUpdatedAt(): Date {
-		return this.updatedAt;
+		return this.updated_at;
 	}
   
 }
