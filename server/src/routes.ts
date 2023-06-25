@@ -93,6 +93,7 @@ routes.delete('/item/:id', (req, res) =>new DeleteItemController().delete(req, r
 // product routes
 routes.post('/product', (req, res) => new CreateProductController().create(req, res));
 routes.get('/product', (req, res) => new ReadProductController().read(req, res));
+routes.get('/product/:id', (req, res) => new ReadProductController().readById(req, res));
 routes.put('/product/:id', (req, res) => new UpdateProductController().update(req, res));
 routes.delete('/product/:id', (req, res) => new DeleteProductController().delete(req, res));
 

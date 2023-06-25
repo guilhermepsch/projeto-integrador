@@ -6,6 +6,7 @@ import Collections from './pages/Collections';
 import Accessories from './pages/Accessories';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import Product from './pages/Product';
 
 export default function App() {
 	return (
@@ -18,6 +19,7 @@ export default function App() {
 				<Route path="/accessories" element={<Accessories />} />
 				<Route path="/cart" element={<Cart />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/product/:id" element={<Product />} />
 			</Routes>
 		</>
 	);
