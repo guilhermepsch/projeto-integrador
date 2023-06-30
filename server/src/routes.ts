@@ -63,6 +63,7 @@ routes.delete('/employee/:id', (req, res) =>
 // cart routes
 routes.post('/cart', (req, res) => new CreateCartController().create(req, res));
 routes.get('/cart', (req, res) => new ReadCartController().read(req, res));
+routes.get('/cart/:id', (req, res) => new ReadCartController().readById(req, res));
 routes.put('/cart/:id', (req, res) =>
 	new UpdateCartController().update(req,res));
 routes.delete('/cart/:id', (req, res) =>
@@ -87,6 +88,7 @@ routes.delete('/catalogue/:id', (req, res) =>new DeleteCatalogueController().del
 //item routes
 routes.post('/item', (req, res) => new CreateItemController().create(req, res));
 routes.get('/item', (req, res) => new ReadItemController().read(req, res));
+routes.get('/item/cart/:cart_id', (req, res) => new ReadItemController().readByCartId(req, res));
 routes.put('/item/:id', (req, res) =>new UpdateItemController().update(req, res),);
 routes.delete('/item/:id', (req, res) =>new DeleteItemController().delete(req, res),);
 

@@ -23,8 +23,17 @@ export class PrismaItemRepository implements ItemRepository{
   async read(): Promise<Item[]> {
     const items = await this.prisma.item.findMany();
     return items.map(item => new Item(item.item_id, item.prod_id, item.cart_id, item.created_at, item.updated_at));
-
   }
+
+  async readByCartId(cart_id: number): Promise<Item[]> {
+    const items = await this.prisma.item.findMany({
+      where: {
+        cart_id: cart_id
+      }
+    });
+    return items.map(item => new Item(item.item_id, item.prod_id, item.cart_id, item.created_at, item.updated_at));
+  }
+
   async delete(id: number): Promise<void> {
     await this.prisma.item.delete({
       where: {

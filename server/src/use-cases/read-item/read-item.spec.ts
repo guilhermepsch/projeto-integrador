@@ -7,6 +7,10 @@ describe("read item", () => {
     const items = await inMemoryItemRepository.read();
     expect(items).toEqual([]);
   });
-}
-);
 
+  it("should read items by cart id", async () => {
+    const inMemoryItemRepository = new InMemoryItemRepository();
+    const items = await inMemoryItemRepository.readByCartId(1);
+    expect(items).toEqual([]);
+  });
+});
