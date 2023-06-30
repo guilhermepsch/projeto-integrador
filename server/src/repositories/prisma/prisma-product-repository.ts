@@ -83,6 +83,28 @@ export class PrismaProductRepository implements ProductRepository{
       product.updated_at
     ));
   }
+
+  async readById(id: number): Promise<Product | null> {
+    const product = await this.prisma.product.findFirst({
+      where: {
+        prod_id: id,
+      },
+    });
+    if (!product) {
+      return null;
+    }
+    return new Product(
+      product.prod_id,
+      product.prod_name,
+      product.prod_price,
+      product.prod_image,
+      product.cata_id,
+      product.prod_description,
+      product.created_at,
+      product.updated_at
+    );
+  }
+
   async create(product: CreateProductDTO): Promise<void> {
     await this.prisma.product.create({
       data: {
