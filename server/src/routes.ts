@@ -27,6 +27,7 @@ import { CreateProductController } from './use-cases/create-product/create-produ
 import { DeleteProductController } from './use-cases/delete-product/delete-product-controller';
 import { ReadProductController } from './use-cases/read-product/read-product-controller';
 import { UpdateProductController } from './use-cases/update-product/update-product-controller';
+import { LoginController } from './use-cases/login/login-controller';
 
 const routes = express.Router();
 
@@ -97,5 +98,7 @@ routes.get('/product/:id', (req, res) => new ReadProductController().readById(re
 routes.put('/product/:id', (req, res) => new UpdateProductController().update(req, res));
 routes.delete('/product/:id', (req, res) => new DeleteProductController().delete(req, res));
 
+//login routes
+routes.post('/login', (req, res) => new LoginController().login(req, res));
 export default routes;
 

@@ -1,0 +1,107 @@
+*{
+  margin-top: 0;
+}
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinha verticalmente no centro */
+  border: 3px solid black;
+  border-radius: 20px;
+  width: 350px;
+  height: 370px;
+  margin: 0 auto; /* Centraliza horizontalmente na página */
+  margin-top: 10px; /* Adapte o valor para ajustar o posicionamento vertical */
+  padding: 20px; /* Adicione um espaço interno para o conteúdo */
+}
+
+h1 {
+  text-align: center; /* Centraliza o texto do título */
+  margin-top: 0; /* Remove a margem superior padrão do título */
+  padding-top: 60px; /* Define o espaço superior do título como 40px */
+  font-family: "Inter", sans-serif;
+}
+
+.login-input{
+  padding-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha os itens à esquerda */
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 90px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-bottom: 10px;
+}
+
+input {
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  border: 2px solid black;
+  gap: 300px; /* Espaçamento entre os botões */
+  margin-top: 10px;
+  border-radius: 20px;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+}
+
+.input-group {
+  width: 250px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinha os itens à esquerda */  
+}
+
+.input-group label {
+  margin-bottom: 5px;
+  text-align: left; /* Alinha o texto à esquerda */
+  font-family: "Inter", sans-serif;
+}
+
+.input-group input {
+  width: 90%;
+  height: 20px;
+  border-radius: 30px;
+  padding: 5px;
+  border: 1.5px solid black;
+}
+
+.login-input button {
+  
+}
+
+.button-group button {
+  flex: 1; /* Distribui o espaço disponível igualmente entre os botões */
+}
+
+
+
+.button-group {
+  display: flex;
+}
+
+.button-group button {
+  margin-right: 10px;
+}
