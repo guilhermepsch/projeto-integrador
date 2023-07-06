@@ -111,6 +111,7 @@ export class PrismaClientAddressRepository implements ClientAddressRepository {
     );
   }
 
+
   async update(clientAddress: ClientAddress): Promise<ClientAddress> {
     const updatedClientAddress = await this.prisma.clientAddress.update({
       where: {

@@ -10,4 +10,7 @@ export class ReadClientAddress {
   async execute(): Promise<ClientAddress[]> {
     return await this.clientAddressRepository.read();
   }
+  async findByClientId(client_id: number): Promise<ClientAddress[]> {
+    return await this.clientAddressRepository.findByClientId(client_id);
+  }
 }

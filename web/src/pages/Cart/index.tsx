@@ -4,7 +4,9 @@ import "./styles.css";
 import { Cart, getCartById } from "../../requests/CartRequests";
 import { Item, getItemsByCartId } from "../../requests/ItemRequests";
 import { Product, getProductById } from "../../requests/ProductRequests";
+import { ClientAddress, getClientAddressByClientId } from "../../requests/ClientAddressRequest";
 import FirstPage from "./FirstPage";
+import SecondPage from "./SecondPage";
 
 export default function Carrinho() {
   const { id } = useParams();
@@ -12,6 +14,7 @@ export default function Carrinho() {
   const [items, setItems] = useState<Item[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
 	const [paginaAtiva, setPaginaAtiva] = useState<number>(1);
+	const [address, setAddress] = useState<ClientAddress[]>([]);
 	let renderizou = false;
 
 	function handleNextPage() {
@@ -44,6 +47,12 @@ export default function Carrinho() {
               }
               setProducts((products) => [...products, product]);
             });
+						getClientAddressByClientId(cart.clie_id).then((address) => {
+							if (address == null) {
+								return;
+							}
+							setAddress((address) => [...address, address[0]]);
+						});
           })
         );
       });
@@ -68,7 +77,7 @@ export default function Carrinho() {
 
 	switch (paginaAtiva) {
 		case 2:
-			return <p>Segunda página</p>;
+			return <SecondPage address={address} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>
 		case 3:
 			return <p>Terceira página</p>;
 		case 4:

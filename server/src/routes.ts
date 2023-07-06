@@ -115,6 +115,7 @@ routes.delete('/client/:id', (req, res) => new DeleteClientController().delete(r
 // clientAddress routes
 routes.post('/clientAddress', (req, res) => new CreateClientAddressController().create(req, res));
 routes.get('/clientAddress', (req, res) => new ReadClientAddressController().read(req, res));
+routes.get('/clientAddress/client/:client_id', (req, res) => new ReadClientAddressController().findByClientId(req, res));
 routes.put('/clientAddress/:clad_id', (req, res) => new UpdateClientAddressController().update(req, res));
 routes.delete('/clientAddress/:id', (req, res) => new DeleteClientAddressController().delete(req, res));
 

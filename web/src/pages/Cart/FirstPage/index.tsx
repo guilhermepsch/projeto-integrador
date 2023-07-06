@@ -8,7 +8,6 @@ export interface FirstPageProps {
 }
 
 export default function FirstPage({items, products, handleNextPage}: FirstPageProps) {
-
   return (
     (
       <>
@@ -32,7 +31,7 @@ export default function FirstPage({items, products, handleNextPage}: FirstPagePr
                   />
                   <div className="item-name">{product.prod_name}</div>
                   <div className="item-quantity">
-                    {items.filter(item => item.id_product === product.prod_id).length}
+                  {items.filter(item => item.id_product === product.prod_id).length}
                   </div>
                 </div>
                 <div className="item-divider" />
