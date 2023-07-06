@@ -13,6 +13,10 @@ export class ReadItem{
     return await this.itemRepository.read();
   } 
 
+  async readByCartId(cart_id: number): Promise<Item[]> {
+    return await this.itemRepository.readByCartId(cart_id);
+  }
+
 }
  
 

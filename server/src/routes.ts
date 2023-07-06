@@ -27,6 +27,13 @@ import { CreateProductController } from './use-cases/create-product/create-produ
 import { DeleteProductController } from './use-cases/delete-product/delete-product-controller';
 import { ReadProductController } from './use-cases/read-product/read-product-controller';
 import { UpdateProductController } from './use-cases/update-product/update-product-controller';
+import { CreateClientAddressController } from './use-cases/create-clientAddress/create-clientAddress-controller';
+import { UpdateClientAddressController } from './use-cases/update-clientAddress/update-clientAddress-controller';
+import { ReadClientAddressController } from './use-cases/read-clientAddress/read-clientAddress-controller';
+import { DeleteClientAddressController } from './use-cases/delete-clientAddress/delete-clientAddress-controller';
+import { CreateClientController } from './use-cases/create-client/create-client-controller';
+import { ReadClientController } from './use-cases/read-client/read-client-controller';
+import { DeleteClientController } from './use-cases/delete-client/delete-client-controller';
 
 const routes = express.Router();
 
@@ -63,6 +70,7 @@ routes.delete('/employee/:id', (req, res) =>
 // cart routes
 routes.post('/cart', (req, res) => new CreateCartController().create(req, res));
 routes.get('/cart', (req, res) => new ReadCartController().read(req, res));
+routes.get('/cart/:id', (req, res) => new ReadCartController().readById(req, res));
 routes.put('/cart/:id', (req, res) =>
 	new UpdateCartController().update(req,res));
 routes.delete('/cart/:id', (req, res) =>
@@ -87,6 +95,7 @@ routes.delete('/catalogue/:id', (req, res) =>new DeleteCatalogueController().del
 //item routes
 routes.post('/item', (req, res) => new CreateItemController().create(req, res));
 routes.get('/item', (req, res) => new ReadItemController().read(req, res));
+routes.get('/item/cart/:cart_id', (req, res) => new ReadItemController().readByCartId(req, res));
 routes.put('/item/:id', (req, res) =>new UpdateItemController().update(req, res),);
 routes.delete('/item/:id', (req, res) =>new DeleteItemController().delete(req, res),);
 
@@ -96,6 +105,20 @@ routes.get('/product', (req, res) => new ReadProductController().read(req, res))
 routes.get('/product/:id', (req, res) => new ReadProductController().readById(req, res));
 routes.put('/product/:id', (req, res) => new UpdateProductController().update(req, res));
 routes.delete('/product/:id', (req, res) => new DeleteProductController().delete(req, res));
+
+// client routes
+routes.post('/client', (req, res) => new CreateClientController().create(req, res));
+routes.get('/client', (req, res) => new ReadClientController().read(req, res));
+routes.put('/client/:id', (req, res) => new UpdateCartController().update(req, res));
+routes.delete('/client/:id', (req, res) => new DeleteClientController().delete(req, res));
+
+// clientAddress routes
+routes.post('/clientAddress', (req, res) => new CreateClientAddressController().create(req, res));
+routes.get('/clientAddress', (req, res) => new ReadClientAddressController().read(req, res));
+routes.get('/clientAddress/client/:client_id', (req, res) => new ReadClientAddressController().findByClientId(req, res));
+routes.put('/clientAddress/:clad_id', (req, res) => new UpdateClientAddressController().update(req, res));
+routes.delete('/clientAddress/:id', (req, res) => new DeleteClientAddressController().delete(req, res));
+
 
 export default routes;
 

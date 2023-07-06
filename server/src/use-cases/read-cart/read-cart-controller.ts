@@ -21,4 +21,14 @@ export class ReadCartController {
             return res.status(400).json({ message: error.message});
         }
     }
+
+    async readById(req: Request, res: Response): Promise<Response> {
+        try{ 
+            const { id } = req.params;
+            const cart = await this.readCart.readById(Number(id));
+            return res.status(200).json(cart);
+        } catch (error: any) {
+            return res.status(400).json({ message: error.message});
+        }
+    }
 }

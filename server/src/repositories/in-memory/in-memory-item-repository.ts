@@ -26,6 +26,11 @@ export class InMemoryItemRepository implements ItemRepository {
       return this.items;
     }
 
+    async readByCartId(cart_id: number): Promise<Item[]> {
+      const items = this.items.filter((item) => item.getCartId() === cart_id);
+      return items;
+    }
+
     async delete(id: number): Promise<void> {
       const index = this.items.findIndex((item) => item.getId() === id);
       this.items.splice(index, 1);
