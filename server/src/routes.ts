@@ -27,6 +27,10 @@ import { CreateProductController } from './use-cases/create-product/create-produ
 import { DeleteProductController } from './use-cases/delete-product/delete-product-controller';
 import { ReadProductController } from './use-cases/read-product/read-product-controller';
 import { UpdateProductController } from './use-cases/update-product/update-product-controller';
+import { CreateClientAddressController } from './use-cases/create-clientAddress/create-clientAddress-controller';
+import { UpdateClientAddressController } from './use-cases/update-clientAddress/update-clientAddress-controller';
+import { ReadClientAddressController } from './use-cases/read-clientAddress/read-clientAddress-controller';
+import { DeleteClientAddressController } from './use-cases/delete-clientAddress/delete-clientAddress-controller';
 
 const routes = express.Router();
 
@@ -98,6 +102,13 @@ routes.get('/product', (req, res) => new ReadProductController().read(req, res))
 routes.get('/product/:id', (req, res) => new ReadProductController().readById(req, res));
 routes.put('/product/:id', (req, res) => new UpdateProductController().update(req, res));
 routes.delete('/product/:id', (req, res) => new DeleteProductController().delete(req, res));
+
+// clientAddress routes
+routes.post('/clientAddress', (req, res) => new CreateClientAddressController().create(req, res));
+routes.get('/clientAddress', (req, res) => new ReadClientAddressController().read(req, res));
+routes.put('/clientAddress/:id', (req, res) => new UpdateClientAddressController().update(req, res));
+routes.delete('/clientAddress/:id', (req, res) => new DeleteClientAddressController().delete(req, res));
+
 
 export default routes;
 
