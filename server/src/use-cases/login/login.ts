@@ -41,5 +41,17 @@ export class Login {
       return { token };
     }
     
-   
+   public isValido(token: string): boolean {
+    if(!token) {
+      return false;
+    }
+    try {
+      const decoded = jwt.verify(token, this.secretKey);
+      return !!decoded;
+    }
+    catch(err) {
+      return false;
+    }
+   }
+
 }
