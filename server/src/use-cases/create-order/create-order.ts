@@ -27,7 +27,6 @@ export class CreateOrder {
         if (!(await this.cartRepository.findById(cart_id))) {
             throw new Error('Cart not found');
         }
-        
         const order: CreateOrderDTO = {
             order_nf,
             order_status,
