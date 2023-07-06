@@ -1,114 +1,79 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import './styles.css';
-import {
-	Cart,
-	Product,
-	getCartById,
-	getProductById,
-} from '../../requests/CartRequests';
-import { Item, getItemsByCartId } from '../../requests/CartRequests';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import "./styles.css";
+import { Cart, getCartById } from "../../requests/CartRequests";
+import { Item, getItemsByCartId } from "../../requests/ItemRequests";
+import { Product, getProductById } from "../../requests/ProductRequests";
+import FirstPage from "./FirstPage";
 
 export default function Carrinho() {
-	const { id } = useParams();
-	const [cart, setCart] = useState<Cart | null | undefined>(null);
-	const [cartItems, setCartItems] = useState<Item[] | null | undefined>(null);
-	const [product, setProduct] = useState<Product | null | undefined>(null);
-	const arrayProduto: number[] = [];
+  const { id } = useParams();
+  const [cart, setCart] = useState<Cart | null | undefined>(null);
+  const [items, setItems] = useState<Item[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+	const [paginaAtiva, setPaginaAtiva] = useState<number>(1);
+	let renderizou = false;
 
-	useEffect(() => {
-		getCartById(Number(id)).then(cart => {
-			if (cart != null) {
-				setCart(cart);
-			} else {
-				setCart(undefined);
-			}
-		});
+	function handleNextPage() {
+		setPaginaAtiva(paginaAtiva + 1);
+	}
 
-		getItemsByCartId(Number(id)).then(cartItems => {
-			if (cartItems != null) {
-				setCartItems(cartItems);
-			} else {
-				setCartItems(undefined);
-			}
-		});
+	function handlePreviousPage() {
+		setPaginaAtiva(paginaAtiva - 1);
+	}
 
-		getProductById(Number(id)).then(product => {
-			if (product != null) {
-				setProduct(product);
-			} else {
-				setProduct(undefined);
-			}
-		});
+  useEffect(() => {
+		if (renderizou === true) return;
+		setProducts([]);
+    getCartById(Number(id)).then((cart) => {
+      if (cart == null) {
+        setCart(undefined);
+        return;
+      }
+      setCart(cart);
+      getItemsByCartId(cart.id).then((cartItems) => {
+        if (cartItems == null) {
+          return;
+        }
+        setItems(cartItems);
+        Promise.all(
+          cartItems.map((item) => {
+            getProductById(item.id_product).then((product) => {
+              if (product == null) {
+                return;
+              }
+              setProducts((products) => [...products, product]);
+            });
+          })
+        );
+      });
+    });
+		renderizou = true;
+  }, []);
 
-			// check if cartItems is empty, if it is not, count the quantity of each product
-			 cartItems?.map(item => {
-			 	if (item.prod_id != null) {
-			 		arrayProduto.push(item.prod_id);
-				}
-			});
-
-			//check arrayProduto and count the quantity of each product
-			const count = arrayProduto.reduce((acc: Record<number, number>, curr) => {
-				if (typeof acc[curr] === 'undefined') {
-					acc[curr] = 1;
-				} else {
-					acc[curr] += 1;
-				}
-				return acc;
-			}, {});
-
-			console.log(count);
-
-	}, [id]);
-
-	return (
-		<>
-			{cart === null ? (
-				<p>Carregando...</p>
-			) : cart === undefined ? (
-				<>
-					<div className="empty-cart">
-						<p>
-							O seu carrinho está vazio... <br />
-							Volte e dê uma olhada em nosso catálogo!
-						</p>
-					</div>
-					<span
-						onClick={() => window.history.back()}
-						className="back-button">
-						Voltar
-					</span>
-				</>
-			) : (
-				<>
-					<div className="items-box">
-						<div className="item-quantity">
-							{cartItems && cartItems.length < 2
-								? `${cartItems?.length} item`
-								: `${cartItems?.length} itens`}
-						</div>
-						<div className="item-divider" />
-						{cartItems &&
-							cartItems.map(item => (
-								<>
-									<div className="items-info">
-										<img
-											src="product?.prod_image"
-											alt=""
-											height={135}
-											width={135}
-										/>
-										<div className="item-name">
-											{product?.prod_name}
-										</div>
-									</div>
-									<div className="item-divider" />
-								</>
-							))}
-					</div>
-				</>
-			)}
-		</>
+	if (cart === null) return <p>Carregando...</p>
+	if (cart === undefined) return (
+	<>
+		<div className="empty-cart">
+			<p>
+				O seu carrinho está vazio... <br />
+				Volte e dê uma olhada em nosso catálogo!
+			</p>
+		</div>
+		<span onClick={() => window.history.back()} className="back-button">
+			Voltar
+		</span>
+	</>
 	);
+
+	switch (paginaAtiva) {
+		case 2:
+			return <p>Segunda página</p>;
+		case 3:
+			return <p>Terceira página</p>;
+		case 4:
+			return <p>Quarta página</p>;
+		default:
+			return <FirstPage items={items} products={products} handleNextPage={handleNextPage}  />;
+	}
 }
