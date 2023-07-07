@@ -27,6 +27,7 @@ import { CreateProductController } from './use-cases/create-product/create-produ
 import { DeleteProductController } from './use-cases/delete-product/delete-product-controller';
 import { ReadProductController } from './use-cases/read-product/read-product-controller';
 import { UpdateProductController } from './use-cases/update-product/update-product-controller';
+import { LoginController } from './use-cases/login/login-controller';
 import { CreateClientAddressController } from './use-cases/create-clientAddress/create-clientAddress-controller';
 import { UpdateClientAddressController } from './use-cases/update-clientAddress/update-clientAddress-controller';
 import { ReadClientAddressController } from './use-cases/read-clientAddress/read-clientAddress-controller';
@@ -106,6 +107,8 @@ routes.get('/product/:id', (req, res) => new ReadProductController().readById(re
 routes.put('/product/:id', (req, res) => new UpdateProductController().update(req, res));
 routes.delete('/product/:id', (req, res) => new DeleteProductController().delete(req, res));
 
+//login routes
+routes.post('/login', (req, res) => new LoginController().login(req, res));
 // client routes
 routes.post('/client', (req, res) => new CreateClientController().create(req, res));
 routes.get('/client', (req, res) => new ReadClientController().read(req, res));
@@ -113,12 +116,14 @@ routes.put('/client/:id', (req, res) => new UpdateCartController().update(req, r
 routes.delete('/client/:id', (req, res) => new DeleteClientController().delete(req, res));
 
 // clientAddress routes
-routes.post('/clientAddress', (req, res) => new CreateClientAddressController().create(req, res));
+routes.post('/user', (req, res) => new CreateClientAddressController().create(req, res));
 routes.get('/clientAddress', (req, res) => new ReadClientAddressController().read(req, res));
 routes.get('/clientAddress/client/:client_id', (req, res) => new ReadClientAddressController().findByClientId(req, res));
 routes.put('/clientAddress/:clad_id', (req, res) => new UpdateClientAddressController().update(req, res));
 routes.delete('/clientAddress/:id', (req, res) => new DeleteClientAddressController().delete(req, res));
 
+
+//cadastro Routes
 
 export default routes;
 
