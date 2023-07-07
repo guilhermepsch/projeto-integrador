@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ClientAddress } from "../../../requests/ClientAddressRequest";
 import "./styles.css";
 
@@ -13,6 +13,12 @@ export default function SecondPage({
   handleNextPage,
   handlePreviousPage,
 }: SecondPageProps) {
+  const [endereçoSelecionado, setEndereçoSelecionado] = useState<number>(0);
+
+  function handleSelectAddress() {
+    setEndereçoSelecionado(endereçoSelecionado + 1);
+  }
+
   if (address.length === 0)
     return (
       <>
@@ -33,6 +39,7 @@ export default function SecondPage({
           <div className="address">
           {address.clad_street}, {address.clad_number}, {address.clad_other}, {address.clad_city}, {address.clad_state}, {address.clad_cep}
           </div>
+          <div className="select-button">.</div>
           </div>
           </div>
         ))}

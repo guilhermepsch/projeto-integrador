@@ -22,11 +22,11 @@ export async function getUsers() {
     console.log(err);
   }
 }
-  export async function getUser(id: number) {
+  export async function getUser(user_id: number) {
     try {
       const response = await axios.request({
         method: "GET",
-        url: "http://localhost:5000/user" + id,
+        url: "http://localhost:5000/user/" + user_id,
         headers: {
           "Content-Type": "application/json",
         },

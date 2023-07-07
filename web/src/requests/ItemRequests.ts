@@ -24,3 +24,20 @@ export async function getItemsByCartId(cart_id: number){
 		return null;
 	}
 }
+
+export async function deleteItem(item_id: number){
+	try {
+		const response = await axios.request({
+			method: 'DELETE',
+			url: 'http://localhost:5000/item/' + item_id,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		const item: Item = response.data;
+		return item;
+	} catch (err) {
+		console.log(err);
+		return null;
+	}
+}

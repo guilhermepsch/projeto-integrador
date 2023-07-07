@@ -8,11 +8,11 @@ export type Client = {
   updated_at : Date;
 };
 
-export async function getClient(client_id: number) {
+export async function getClient(id: number) {
   try {
     const response = await axios.request({
       method: "GET",
-      url: "http://localhost:5000/client" + client_id,
+      url: "http://localhost:5000/client/" + id,
       headers: {
         "Content-Type": "application/json",
       },

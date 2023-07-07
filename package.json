@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "gpix": "^1.1.8"
+    "qrcode-pix": "5.0.0"
   }
 }

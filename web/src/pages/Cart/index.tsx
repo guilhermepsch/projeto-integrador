@@ -11,6 +11,10 @@ import {
 import FirstPage from "./FirstPage";
 import SecondPage from "./SecondPage";
 import ThirdPage from "./ThirdPage";
+import { User, getUser } from "../../requests/UserRequests";
+import { Client, getClient } from "../../requests/ClientRequests";
+import PixPage from "./PixPage";
+import FourthPage from "./FourthPage";
 
 export default function Carrinho() {
   const { id } = useParams();
@@ -19,6 +23,8 @@ export default function Carrinho() {
   const [products, setProducts] = useState<Product[]>([]);
   const [paginaAtiva, setPaginaAtiva] = useState<number>(1);
   const [address, setAddress] = useState<ClientAddress[]>([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [client, setClient] = useState<Client | null>(null);
   let renderizou = false;
 
   function handleNextPage() {
@@ -38,6 +44,18 @@ export default function Carrinho() {
         return;
       }
       setCart(cart);
+      getClient(cart.clie_id).then((client) => {
+        if (client == null) {
+          return;
+        }
+        setClient(client);
+        getUser(client.user_id).then((user) => {
+          if (user == null) {
+            return;
+          }
+          setUser(user);
+        });
+      });
       getClientAddressByClientId(cart.clie_id).then((address) => {
         if (address == null) {
           return;
@@ -50,15 +68,15 @@ export default function Carrinho() {
         }
         setItems(cartItems);
         let productArray: Product[] = [];
-				Promise.all(
+        Promise.all(
           cartItems.map((item) => {
-						getProductById(item.id_product).then((product) => {
+            getProductById(item.id_product).then((product) => {
               if (product == null) {
                 return;
               }
               if (productArray.find((prod) => prod.prod_id === product.prod_id))
                 return;
-								productArray.push(product);
+              productArray.push(product);
               setProducts((products) => [...products, product]);
             });
           })
@@ -94,9 +112,16 @@ export default function Carrinho() {
         />
       );
     case 3:
-      return <p><ThirdPage items={items} products={products} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/></p>;
+      return (
+          <ThirdPage
+            handleNextPage={handleNextPage}
+            handlePreviousPage={handlePreviousPage}
+          />
+      );
     case 4:
-      return <p>Quarta página</p>;
+      return (<PixPage cart={cart} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>);
+    case 5:
+      return (<FourthPage handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>);
     default:
       return (
         <FirstPage

@@ -1,4 +1,11 @@
 export class Order {
+    
+    public static status = {
+        PENDING: 0,
+        PAID: 1,
+        CANCELED: 2,
+    };
+    
     private orde_id: number;
     private orde_nf: string;
     private orde_status: number;

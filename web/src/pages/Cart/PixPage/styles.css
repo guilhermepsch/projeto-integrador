@@ -1,0 +1,13 @@
+.pix-info{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 60px;
+}
+
+.pix-text{
+  font-size: 20px;
+  font-family: Inter;
+  font-weight: 500;
+  color: #000;
+}
