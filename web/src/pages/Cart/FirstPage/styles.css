@@ -84,3 +84,7 @@
 .name-trash{
   display: flex;
 }
+
+.trash{
+  cursor: pointer;
+}

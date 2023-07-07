@@ -23,30 +23,44 @@ export default function SecondPage({
     return (
       <>
         <p className="set-address">ESCOLHA O ENDEREÇO:</p>
-        <p className="no-address">Parece que você não tem um endereço cadastrado</p>
+        <p className="no-address">
+          Parece que você não tem um endereço cadastrado
+        </p>
         <span className="add-button">Adicionar</span>
         <div className="buttons-back-next">
-        <div className="back-button-2" onClick={() => handlePreviousPage()}>Voltar</div>
+          <div className="back-button-2" onClick={() => handlePreviousPage()}>
+            Voltar
+          </div>
         </div>
       </>
     );
   return (
     <>
-      <p className="set-address">ESCOLHA O ENDEREÇO:</p>
-        {address.map((address, key) => (
-          <div  key={key}>
+      <p className="set-address">
+        {endereçoSelecionado === 0
+          ? "ESCOLHA O ENDEREÇO:"
+          : "ENDEREÇO SELECIONADO: " +
+            address.find((address, key) => key + 1 === endereçoSelecionado)
+              ?.clad_street}
+      </p>
+      {address.map((address, key) => (
+        <div key={key} onClick={() => setEndereçoSelecionado(key + 1)}>
           <div className="address-box">
-          <div className="address">
-          {address.clad_street}, {address.clad_number}, {address.clad_other}, {address.clad_city}, {address.clad_state}, {address.clad_cep}
+            <div className="address">
+              {address.clad_street}, {address.clad_number}, {address.clad_other}
+              , {address.clad_city}, {address.clad_state}, {address.clad_cep}
+            </div>
           </div>
-          <div className="select-button">.</div>
-          </div>
-          </div>
-        ))}
-        <div className="buttons-back-next">
-        <div className="back-button-2" onClick={() => handlePreviousPage()}>Voltar</div>
-        <div className="next-button-2" onClick={() => handleNextPage()}>Continuar</div>
         </div>
+      ))}
+      <div className="buttons-back-next">
+        <div className="back-button-2" onClick={() => handlePreviousPage()}>
+          Voltar
+        </div>
+        <div className="next-button-2" onClick={() => handleNextPage()}>
+          Continuar
+        </div>
+      </div>
     </>
   );
 }

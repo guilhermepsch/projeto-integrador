@@ -37,7 +37,7 @@ export default function FirstPage({
                 <div className="name-qtd">
                   <div className="name-trash">
                     <div className="item-name">{product.prod_name}</div>
-                    <div
+                    <div className="trash"
                       onClick={() => {
                         deleteItem(
                           items.filter(
