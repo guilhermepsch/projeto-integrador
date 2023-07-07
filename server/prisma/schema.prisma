@@ -83,6 +83,7 @@ model Product {
   prod_price       Float
   prod_description String
   prod_image       String
+  prod_type        Int
   cata_id          Int
   created_at       DateTime @default(now())
   updated_at       DateTime @default(now()) @updatedAt

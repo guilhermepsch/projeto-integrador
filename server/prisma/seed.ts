@@ -84,6 +84,7 @@ async function main() {
         prod_price: 10.5,
         prod_description: 'Descrição do produto 1',
         prod_image: 'imagem1.jpg',
+        prod_type: 1,
         cata_id: 1,
       },
     ],

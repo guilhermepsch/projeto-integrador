@@ -2,28 +2,28 @@ import './styles.css';
 import cartIcon from '../../../assets/img/akar-icons_cart.png';
 import { createItem } from '../../../requests/ItemRequests';
 
-export interface AccessoryItemProps {
+export interface BeachwearItemProps {
 	id: number;
 	name: string;
 	image: string;
 	price: number;
 }
 
-export default function AccessoryItem({
+export default function BeachwearItem({
 	id,
 	name,
 	image,
 	price,
-}: AccessoryItemProps) {
+}: BeachwearItemProps) {
 	return (
-		<div className="accessory-item-container">
+		<div className="beachwear-item-container">
 			<img src={image} alt={name} width={239} height={270} />
-			<div className="accessory-item-description">
-				<div className="accessory-item-name">{name}</div>
-				<div className="accessory-price-cart-container">
-					<div className="accessory-item-price">R$ {price}</div>
+			<div className="beachwear-item-description">
+				<div className="beachwear-item-name">{name}</div>
+				<div className="beachwear-price-cart-container">
+					<div className="beachwear-item-price">R$ {price}</div>
 					<div
-						className="accessory-item-cart"
+						className="beachwear-item-cart"
 						onClick={() => {
 							createItem(1, id);
 						}}>

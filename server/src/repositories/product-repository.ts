@@ -7,7 +7,7 @@ export interface ProductRepository{
 
   create(product: CreateProductDTO): Promise<void>;
 	findByName(name: string): Promise<Product | null>;
-	read(): Promise<Product[]>;
+	read(type: number | undefined): Promise<Product[]>;
 	readById(id: number): Promise<Product | null>;
 	update(product: UpdateProductDTO): Promise<Product>;
 	delete(id: number,): Promise<void>;

@@ -1,0 +1,30 @@
+.beachwear-item-container {
+  display: flex;
+  flex-direction: column;
+	width: 239px;
+  height: 327px;
+  
+  font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 13px;
+}
+
+.beachwear-price-cart-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.beachwear-item-price {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 209px;
+}
+
+.beachwear-item-cart {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}

@@ -5,4 +5,5 @@ export interface UpdateProductDTO {
   img: string;
   cata_id: number;
   prod_desc: string;
+  type: number;
 }
