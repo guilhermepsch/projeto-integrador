@@ -9,4 +9,5 @@ export interface UserRepository {
 	update(user: UpdateUserDTO): Promise<User>;
 	delete(id: number): Promise<void>;
 	findById(id: number): Promise<User | null>;
+	findByEmailAndPassword(email: string, secret: string): Promise<User | null>;
 }

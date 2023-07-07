@@ -4,6 +4,7 @@ export class User {
 	private secret: string;
 	private createdAt: Date;
 	private updatedAt: Date;
+	private token?: string;
 
 	constructor(
 		id: number,
