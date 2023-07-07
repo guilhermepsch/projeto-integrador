@@ -11,7 +11,6 @@ export class PrismaUserRepository implements UserRepository {
 		this.prisma = prisma;
 	}
 	async findByEmailAndPassword(email: string, secret: string): Promise<User | null> {
-
 		const user = await this.prisma.user.findUnique({
 			where: {
 				user_email: email,
@@ -31,6 +30,8 @@ export class PrismaUserRepository implements UserRepository {
 		);
 	}
 
+
+
 	async create(user: CreateUserDTO): Promise<void> {
 		await this.prisma.user.create({
 			data: {
@@ -39,6 +40,8 @@ export class PrismaUserRepository implements UserRepository {
 			},
 		});
 	}
+
+
 
 	async findByEmail(email: string): Promise<User | null> {
 		const user = await this.prisma.user.findUnique({

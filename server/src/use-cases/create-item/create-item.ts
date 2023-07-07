@@ -15,10 +15,10 @@ export class CreateItem {
 
   async execute({ prod_id, cart_id }: CreateItemRequest): Promise<void> {
     
-    if (prod_id === null) {
+    if (prod_id < 1) {
       throw new Error("Prod_id invallid");
     }
-    if (cart_id !== null) {
+    if (!cart_id || cart_id < 1) {
       throw new Error("cart_id invallid");
     }
 

@@ -12,7 +12,7 @@ export class ReadClientController {
 		);
 	}
 
-	async update(req: Request, res: Response): Promise<Response> {
+	async read(req: Request, res: Response): Promise<Response> {
 		try {
 			const clients = await this.readClient.execute();
       return res.status(200).json(clients);

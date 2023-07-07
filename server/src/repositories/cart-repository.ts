@@ -7,6 +7,7 @@ export interface CartRepository {
     findById(id: number): Promise<Cart | null>;
     findByClientId(id_clie: number): Promise<Cart | null>;
     read(): Promise<Cart[]>;
+    readById(id: number): Promise<Cart | null>;
     update(cart: UpdateCartDTO): Promise<Cart>;
     delete(id: number): Promise<void>;
 }

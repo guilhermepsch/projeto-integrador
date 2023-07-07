@@ -27,7 +27,7 @@ export class Item{
     return this.id_product
   }
 
-  public getId_cart() : number | null{
+  public getCartId() : number | null{
     return this.id_cart
   }
 

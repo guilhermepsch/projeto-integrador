@@ -16,7 +16,7 @@ const Login = () => {
       const response = await doLogin(loginForm.email, loginForm.secret);
       console.log(response);
       setLoginSuccess(true);
-      alert("Bem Vindo a Zdev Store");
+      alert("Bem Vindo a Summer Time Store");
       window.location.href = "/"; // Redirect to home page
     } catch (error: any) {
       alert("Login failed vefiry your email or password");
@@ -68,7 +68,7 @@ const Login = () => {
         />
       </div>
       <div className="cadastro"> 
-       <a href="/cadastro">Criar cadastro agora</a>
+       <a href="/user">Criar cadastro agora</a>
       </div>
       <div className="button-group">
         <button type="submit">Submit</button>

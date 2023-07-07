@@ -1,3 +1,4 @@
+import { User } from '@prisma/client';
 import { UserRepository } from '../../repositories/user-repository';
 import { CreateUserDTO } from './create-user-dto';
 import crypto from 'crypto';
@@ -23,7 +24,7 @@ export class CreateUser {
 			email,
 			secret: hashedSecret,
 		};
-		await this.userRepository.create(user);
+		 await this.userRepository.create(user);
 	}
 	
 

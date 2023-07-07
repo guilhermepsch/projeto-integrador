@@ -29,6 +29,11 @@ export class InMemoryCartRepository implements CartRepository {
         return this.carts;
     }
 
+    async readById(id: number): Promise<Cart | null> {
+        const cart = this.carts.find(cart => cart.getId() === id);
+        return cart ?? null;
+    }
+
     async findByClientId(clie_id: number): Promise<Cart | null> {
         const cart = this.carts.find(cart => cart.getClieId() === clie_id);
         return cart ?? null;    
