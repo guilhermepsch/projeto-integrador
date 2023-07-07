@@ -1,0 +1,79 @@
+.set-address {
+  color: #000;
+  font-family: Inter;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 67px 0 20px 100px;
+}
+
+.address-box {
+  border: 2px solid #000;
+  background: #fafafa;
+  padding: 62px 37px 62px 37px;
+  margin: 0px 70px 20px 100px;
+  cursor: pointer;
+}
+
+.address {
+  color: #000;
+  font-family: Inter;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.buttons-back-next {
+  display: flex;
+  justify-content: space-between;
+  margin: 80px 80px 88px 110px;
+}
+
+.next-button-2 {
+  color: #000;
+  font-size: 30px;
+  font-family: Inter;
+  font-weight: 400;
+  padding: 18px 37px;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.back-button-2 {
+  color: #000;
+  font-size: 30px;
+  font-family: Inter;
+  font-weight: 400;
+  padding: 18px 37px;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #000;
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.25);
+}
+
+.no-address{
+  color: #7B7B7B;
+  font-family: Inter;
+  font-size: 45px;
+  font-style: italic;
+  font-weight: 200;
+  line-height: normal;
+  margin: 40px 0px 67px 100px;
+}
+
+.add-button{
+  color: #000;
+  font-size: 30px;
+  font-family: Inter;
+  font-weight: 400;
+  padding: 18px 37px;
+  cursor: pointer;
+  border-radius: 20px;
+  border: 1px solid #000;
+  margin: 0px 0px 200px 105px;
+  box-shadow: 0px 0px 3px 3px rgba(0, 0, 0, 0.25);
+}

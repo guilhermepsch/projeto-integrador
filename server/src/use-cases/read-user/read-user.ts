@@ -11,4 +11,8 @@ export class ReadUser {
 	async execute(): Promise<User[]> {
 		return await this.userRepository.read();
 	}
+
+	async findById(id: number): Promise<User | null> {
+		return await this.userRepository.findById(id);
+	}
 }

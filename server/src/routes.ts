@@ -35,6 +35,7 @@ import { DeleteClientAddressController } from './use-cases/delete-clientAddress/
 import { CreateClientController } from './use-cases/create-client/create-client-controller';
 import { ReadClientController } from './use-cases/read-client/read-client-controller';
 import { DeleteClientController } from './use-cases/delete-client/delete-client-controller';
+import { GeneratePixController } from './use-cases/generate-pix/generate-pix-controller';
 
 const routes = express.Router();
 
@@ -51,6 +52,7 @@ routes.get('/', (req, res) => res.send('Pong!'));
 // user routes
 routes.post('/user', (req, res) => new CreateUserController().create(req, res));
 routes.get('/user', (req, res) => new ReadUserController().read(req, res));
+routes.get('/user/:id', (req, res) => new ReadUserController().findById(req, res));
 routes.put('/user/:id', (req, res) =>new UpdateUserController().update(req, res),);
 routes.delete('/user/:id', (req, res) =>new DeleteUserController().delete(req, res),);
 
@@ -112,6 +114,7 @@ routes.post('/login', (req, res) => new LoginController().login(req, res));
 // client routes
 routes.post('/client', (req, res) => new CreateClientController().create(req, res));
 routes.get('/client', (req, res) => new ReadClientController().read(req, res));
+routes.get('/client/:id', (req, res) => new ReadClientController().readById(req, res));
 routes.put('/client/:id', (req, res) => new UpdateCartController().update(req, res));
 routes.delete('/client/:id', (req, res) => new DeleteClientController().delete(req, res));
 
@@ -122,6 +125,8 @@ routes.get('/clientAddress/client/:client_id', (req, res) => new ReadClientAddre
 routes.put('/clientAddress/:clad_id', (req, res) => new UpdateClientAddressController().update(req, res));
 routes.delete('/clientAddress/:id', (req, res) => new DeleteClientAddressController().delete(req, res));
 
+// pix routes
+routes.get('/pix', (req, res) => new GeneratePixController().generate(req, res));
 
 //cadastro Routes
 

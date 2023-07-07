@@ -8,6 +8,7 @@
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
     "prisma": "^4.11.0",
+    "qrcode-pix": "^5.0.0",
     "typescript": "^4.9.5"
   },
   "scripts": {

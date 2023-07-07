@@ -25,21 +25,17 @@ export async function getItemsByCartId(cart_id: number){
 	}
 }
 
-export async function createItem(cart_id: number, prod_id: number){
+export async function deleteItem(item_id: number){
 	try {
 		const response = await axios.request({
-			method: 'POST',
-			url: 'http://localhost:5000/item',
+			method: 'DELETE',
+			url: 'http://localhost:5000/item/' + item_id,
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			data: {
-				prod_id: prod_id,
-				cart_id: cart_id
-			}
 		});
-		const items: Item[] = response.data;
-		return items;
+		const item: Item = response.data;
+		return item;
 	} catch (err) {
 		console.log(err);
 		return null;

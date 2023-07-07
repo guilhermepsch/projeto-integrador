@@ -13,4 +13,9 @@ export class ReadClient {
     const clients = await this.clientRepository.read();
     return clients;
   }
+
+  async findById(id: number): Promise<Client | null> {
+    const client = await this.clientRepository.findById(id);
+    return client;
+  }
 }
