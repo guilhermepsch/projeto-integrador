@@ -24,8 +24,3 @@ export async function getItemsByCartId(cart_id: number){
 		return null;
 	}
 }
-
-  export function teste(){
-  const teste = 1;
-  return teste;
-}
