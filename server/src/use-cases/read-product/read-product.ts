@@ -6,8 +6,8 @@ export class ReadProduct {
 		this.productRepository = productRepository;
 	}
 
-	async read(): Promise<Product[]> {
-		return await this.productRepository.read();
+	async read(type: number | undefined): Promise<Product[]> {
+		return await this.productRepository.read(type);
 	}
 
 	async readById(id: number): Promise<Product | null> {

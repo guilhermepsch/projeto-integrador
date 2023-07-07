@@ -13,6 +13,7 @@ describe("UpdateProductRepository", () => {
       img: "img",
       cata_id: 1,
       prod_desc: "desc",
+      type: 1,
     });
     const product = await productRepository.findByName("product 1");
     const updatedProduct = await updateProduct.update({
@@ -22,6 +23,7 @@ describe("UpdateProductRepository", () => {
       img: "img",
       cata_id: 1,
       prod_desc: "desc",
+      type: 1,
     });
 
   it("should not be able to update a product that does not exist", () => {
@@ -35,6 +37,7 @@ describe("UpdateProductRepository", () => {
         img: "img",
         cata_id: 1,
         prod_desc: "desc",
+        type: 1,
       })
     ).rejects.toThrowError("Product not found");
   });

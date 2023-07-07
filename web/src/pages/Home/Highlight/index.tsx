@@ -1,35 +1,43 @@
 import HighlightItem from './HighlightItem';
 import './styles.css';
-import frontImage from '../../../assets/img/mock/beach1.png';
-import backImage from '../../../assets/img/mock/beach2.png';
+import { useEffect, useState } from 'react';
+import {
+	PRODUCT_TYPE_HIGHLIGHT,
+	Product,
+	getProducts,
+} from '../../../requests/ProductRequests';
 
 export default function Highlight() {
+	const [products, setProducts] = useState<Product[] | undefined>([]);
+
+	useEffect(() => {
+		getProducts({ type: PRODUCT_TYPE_HIGHLIGHT }).then(produtos => {
+			if (produtos.length === 0) setProducts(undefined);
+			else setProducts(produtos);
+		});
+	}, []);
+
+	if (products === undefined) {
+		return <p>Erro ao carregar produtos.</p>;
+	}
+	if (products.length === 0) {
+		return <p>Carregando...</p>;
+	}
+
 	return (
 		<div className="highlight-background">
 			<div className="highlight-title">Destaques</div>
 			<div className="highlight-list">
-				<HighlightItem
-					imageFront={frontImage}
-					imageBack={backImage}
-					price={100}
-					description="Conjunto Branco Praia"
-					alt="Praia"
-				/>
-				<HighlightItem
-					imageFront={frontImage}
-					imageBack={backImage}
-					price={100}
-					description="Conjunto Branco Praia"
-					alt="Praia"
-				/>
-
-				<HighlightItem
-					imageFront={frontImage}
-					imageBack={backImage}
-					price={100}
-					description="Conjunto Branco Praia"
-					alt="Praia"
-				/>
+				{products.map(product => (
+					<HighlightItem
+						key={product.prod_id}
+						id={product.prod_id}
+						imageFront={product.prod_img}
+						alt={product.prod_name}
+						price={product.prod_price}
+						description={product.prod_desc}
+					/>
+				))}
 			</div>
 		</div>
 	);

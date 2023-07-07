@@ -40,6 +40,7 @@ export class PrismaProductRepository implements ProductRepository{
         product.prod_price,
         product.prod_image,
         product.cata_id,
+        product.prod_type,
         product.prod_description,
         product.created_at,
         product.updated_at
@@ -65,23 +66,32 @@ export class PrismaProductRepository implements ProductRepository{
       updatedProduct.prod_price,
       updatedProduct.prod_image,
       updatedProduct.cata_id,
+      updatedProduct.prod_type,
       updatedProduct.prod_description,
       updatedProduct.created_at,
       updatedProduct.updated_at
     );
   }
-  async read(): Promise<Product[]> {
-    const products = await this.prisma.product.findMany();
-    return products.map(product => new Product(
-      product.prod_id, 
-      product.prod_name,
-      product.prod_price,
-      product.prod_image,
-      product.cata_id,
-      product.prod_description,
-      product.created_at,
-      product.updated_at
-    ));
+  async read(type: number | undefined): Promise<Product[]> {
+    const products = await this.prisma.product.findMany({
+      where: {
+        prod_type: type,
+      },
+    });
+    return products.map(
+      (product) =>
+        new Product(
+          product.prod_id,
+          product.prod_name,
+          product.prod_price,
+          product.prod_image,
+          product.cata_id,
+          product.prod_type,
+          product.prod_description,
+          product.created_at,
+          product.updated_at
+        )
+    );
   }
 
   async readById(id: number): Promise<Product | null> {
@@ -99,6 +109,7 @@ export class PrismaProductRepository implements ProductRepository{
       product.prod_price,
       product.prod_image,
       product.cata_id,
+      product.prod_type,
       product.prod_description,
       product.created_at,
       product.updated_at
@@ -112,6 +123,7 @@ export class PrismaProductRepository implements ProductRepository{
         prod_price: product.price,
         prod_image: product.img,
         cata_id: product.cata_id,
+        prod_type: product.type,
         prod_description: product.prod_desc,
         created_at: new Date(),
         updated_at: new Date()
@@ -137,6 +149,7 @@ export class PrismaProductRepository implements ProductRepository{
         product.prod_price,
         product.prod_image,
         product.cata_id,
+        product.prod_type,
         product.prod_description,
         product.created_at,
         product.updated_at

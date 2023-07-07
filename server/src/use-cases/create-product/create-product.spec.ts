@@ -15,7 +15,7 @@ describe('Create Product', () => {
                 img: 'Teste',
                 cata_id: 1,
                 prod_desc: 'Teste',
-
+                type: 1,
             }),
         ).resolves.toBeUndefined();
     });
@@ -23,7 +23,7 @@ describe('Create Product', () => {
     it ('should not be able to create an product with an name that already exists', () =>{
         const createProduct = new CreateProduct(
             new InMemoryProductRepository([
-                new Product(1, 'Teste', 1, 'Teste', 1, 'Teste'),
+                new Product(1, 'Teste', 1, 'Teste', 1, 1, 'Teste', new Date(), new Date()),
             ]),
         );
 
@@ -34,6 +34,7 @@ describe('Create Product', () => {
                 img: 'Teste',
                 cata_id: 1,
                 prod_desc: 'Teste',
+                type: 1,
             }),
         ).rejects.toThrowError('Product already exists');
     }

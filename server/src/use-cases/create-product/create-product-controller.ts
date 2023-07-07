@@ -17,6 +17,7 @@ export class CreateProductController {
         name: String(req.body.name),
         price: Number(req.body.price),
         img: String(req.body.img),
+        type: Number(req.body.type),
         cata_id: Number(req.body.cata_id),
         prod_desc: String(req.body.prod_desc),
       };

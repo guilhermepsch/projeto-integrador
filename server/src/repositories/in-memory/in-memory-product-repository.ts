@@ -37,6 +37,7 @@ export class InMemoryProductRepository implements ProductRepository {
 			product.price,
 			product.img,
 			product.cata_id,
+			product.type,
 			product.prod_desc,
 			new Date(),
 			new Date(),
@@ -45,7 +46,13 @@ export class InMemoryProductRepository implements ProductRepository {
 		return newProduct;
 	}
 
-	async read(): Promise<Product[]> {
+	async read(type: number | undefined): Promise<Product[]> {
+		if (type) {
+			const products = this.products.filter(
+				product => product.getType() === type,
+			);
+			return products;
+		}
 		return this.products;
 	}
 
@@ -56,6 +63,7 @@ export class InMemoryProductRepository implements ProductRepository {
 			product.price,
 			product.img,
 			product.cata_id,
+			product.type,
 			product.prod_desc,
 			new Date(),
 			new Date(),

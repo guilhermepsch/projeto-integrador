@@ -14,7 +14,10 @@ export class ReadProductController {
 
 	async read(req: Request, res: Response): Promise<Response> {
 		try {
-			const products = await this.readProduct.read();
+			const type = req.query.type as string;
+			const products = await this.readProduct.read(
+				(isNaN(Number(type)) || Number(type) == 0) ? undefined : Number(type),
+			);
 			return res.status(200).json(products);
 		} catch (error: any) {
 			return res.status(400).json({ message: error.message });

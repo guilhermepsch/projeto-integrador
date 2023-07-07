@@ -12,6 +12,7 @@ describe('DeleteProduct', () => {
       img: 'img',
       cata_id: 1,
       prod_desc: 'desc',
+      type: 1
     })
     const product = await productRepository.findByName('product 1')
     await deleteProduct.execute(product?.getId() ?? 0)

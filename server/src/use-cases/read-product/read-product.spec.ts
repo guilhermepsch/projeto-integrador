@@ -14,6 +14,7 @@ describe('read products', () => {
       img: 'img',
       cata_id: 1,
       prod_desc: 'desc',
+      type: 1,
     });
     await productRepository.create({
       name: 'product 2',
@@ -21,8 +22,9 @@ describe('read products', () => {
       img: 'img',
       cata_id: 1,
       prod_desc: 'desc',
+      type: 1,
     });
-    const products = await readProduct.read();
+    const products = await readProduct.read(undefined);
     expect(products.length).toBe(2);
   });
 }
