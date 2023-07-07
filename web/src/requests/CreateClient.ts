@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function doCreateClient (age: String , user_id: number ) {
 
-  const response = await axios.post("http://localhost:3678/user",{
+  const response = await axios.post("http://localhost:3678/client",{
     age: age,
     user_id: user_id,
   }, {

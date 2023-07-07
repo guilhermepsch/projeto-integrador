@@ -8,6 +8,7 @@ const Cadaster = () => {
     email: '',
     password: '',
     confirmPassword: '',
+    age: ''
   });
 
   const submitForm = async (event: { preventDefault: () => void; }) => {
@@ -22,7 +23,7 @@ const Cadaster = () => {
     try {
       const response = await doCreateUser(cadasterForm.email, cadasterForm.password);
       console.log(response);
-
+      const userId = response.data.id;
       alert("Cadastro realizado com sucesso");
       window.location.href = "/"; // Redirect to home page
     } catch (error) {
