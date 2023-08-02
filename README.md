@@ -1,4 +1,4 @@
-# Projeto Integrador - Aplicativo (nome a definir)
+# Projeto Integrador - Aplicativo web Summertime Sale
 
 Este repositório contém o código-fonte e os arquivos necessários para executar o aplicativo do Projeto Integrador da disciplina. O aplicativo ainda está em desenvolvimento e seu nome ainda não foi definido.
 
